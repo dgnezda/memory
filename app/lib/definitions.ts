@@ -6,7 +6,20 @@ export type User = {
   };
 
 export type Card = {
-    id: string;
-    value: string;
+    value: number;
     visibile: boolean; 
+}
+
+export type Score = {
+  id: string;
+  name: string;
+  score: string | number;
+  date: string;
+}
+
+export type HighScoreTable = {
+  id: string;
+  name: string;
+  score: string | number;
+  date: string;
 }
