@@ -21,7 +21,7 @@ export function Card({
     const flippedHoverColor = 'hover:bg-gradient-to-l'
 
     return (
-        <button onClick={onClick} className={`${roboto.className} flex justify-center items-center h-40 w-40 rounded-xl ${visible ? backgroundColor : flippedBackgroundColor} ${visible ? hoverColor : flippedHoverColor} py-6 px-6 shadow-md`}>
+        <button onClick={onClick} className={`${roboto.className} border-white border-4  flex justify-center items-center h-40 w-40 rounded-xl ${visible ? backgroundColor : flippedBackgroundColor} ${visible ? hoverColor : flippedHoverColor} py-6 px-6 shadow-md`}>
             <div className={`${textColor} text-8xl text-center`}>
                 {visible ? value : ''}
             </div>
