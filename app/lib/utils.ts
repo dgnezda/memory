@@ -12,8 +12,8 @@ export const formatDateToLocal = (
     return formatter.format(date);
   };
 
-export function generateRandomBoard(): number[][] {
-  const values = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
+export function generateRandomBoard(): number[] {
+  const unshuffledBoard = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
 
   const shuffle = (array: number[]) => { 
     for (let i = array.length - 1; i > 0; i--) { 
@@ -23,14 +23,7 @@ export function generateRandomBoard(): number[][] {
     return array; 
   }; 
 
-  const shuffledValues = shuffle(values)
+  const shuffledBoard = shuffle(unshuffledBoard)
 
-  const board = [
-    shuffledValues.slice(0,4),
-    shuffledValues.slice(4,8),
-    shuffledValues.slice(8,12),
-    shuffledValues.slice(12)
-  ]
-
-  return board
+  return shuffledBoard
 }
