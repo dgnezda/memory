@@ -11,7 +11,7 @@ Then:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to play the game.
+Open [http://localhost:3000/dashboard/game](http://localhost:3000/dashboard/game) with your browser to play the game.
 
 ## Disclaimer
 
