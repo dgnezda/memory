@@ -50,6 +50,7 @@ export default function Page() {
         <ArrowRightIcon className='md:h-28 h-12 self-center' />,
         <ArrowDownRightIcon className='md:h-28 h-12 self-center' />,
     ]
+    const letters = ['A', 'M', 'D', 'J', 'E', 'Y', 'P', 'Z']
 
     const getInitialState = (gameMode: string) => {
         // Get random board, make initial board state object array
@@ -62,6 +63,10 @@ export default function Page() {
         } else if (gameMode === 'symbols') {
             board.map(num => (
                 boardArray.push(symbols[num - 1])
+            ))
+        } else if (gameMode === 'letters') {
+            board.map(num => (
+                boardArray.push(letters[num - 1])
             ))
         } else {
             board.map(num => (
@@ -112,7 +117,7 @@ export default function Page() {
     // Cycle game mode
     const cycleGameMode = () => {
         setGameMode(prevMode => {
-            const modes = ['numbers', 'arrows', 'symbols']
+            const modes = ['numbers', 'letters', 'symbols', 'arrows']
             const currentIndex = modes.indexOf(prevMode)
             const nextIndex = (currentIndex + 1) % modes.length
             return modes[nextIndex]
@@ -201,9 +206,11 @@ export default function Page() {
             <button onClick={cycleGameMode} className='flex absolute md:top-5 top-44 md:left-2/4 right-auto py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>
                 {gameMode === 'numbers' 
                     ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
-                    : gameMode === 'arrows' 
-                        ? <><ArrowRightIcon className='h-4 m-1' /><ArrowLeftIcon className='h-4 m-1' /><ArrowDownRightIcon className='h-4 m-1' /></>
-                        : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
+                    : gameMode === 'letters' 
+                        ? <p className='mx-3'>A&nbsp;&nbsp;B&nbsp;&nbsp;C</p> 
+                        : gameMode === 'arrows' 
+                            ? <><ArrowRightIcon className='h-4 m-1' /><ArrowLeftIcon className='h-4 m-1' /><ArrowDownRightIcon className='h-4 m-1' /></>
+                            : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
                 }
             </button>
             <p className='absolute md:top-5 top-44 right-1/4 py-2 px-4 bg-slate-50 rounded-xl'>Turns: {turns}</p>
