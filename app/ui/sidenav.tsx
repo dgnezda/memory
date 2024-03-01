@@ -11,9 +11,9 @@ export default function SideNav() {
         className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-400 p-4 md:h-40"
         href="/dashboard/game"
       >
-        <div className="flex justify-start flex-wrap w-32 text-white md:w-40">
-          <PuzzlePieceIcon className='w-24'/>
-          <div className='text-3xl'>Memory</div>
+        <div className="flex md:justify-start justify-between flex-wrap w-32 text-white md:w-40">
+          <PuzzlePieceIcon className='md:w-24 w-10'/>
+          <div className='md:text-3xl text-xl top-5'>Memory</div>
         </div>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
