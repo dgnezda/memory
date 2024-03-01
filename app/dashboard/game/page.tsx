@@ -25,6 +25,7 @@ import {
 
     CheckIcon,
     XMarkIcon,
+    ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 
 export default function Page() {
@@ -202,7 +203,7 @@ export default function Page() {
 
     return (
         <>
-            <button onClick={handleResetGame} className='absolute md:top-5 top-44 left-1/4 py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>Reset</button>
+            <button onClick={handleResetGame} className='absolute md:top-5 top-44 left-1/4 py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
             <button onClick={cycleGameMode} className='flex absolute md:top-5 top-44 md:left-2/4 right-auto py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>
                 {gameMode === 'numbers' 
                     ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
@@ -221,9 +222,9 @@ export default function Page() {
                         <Card 
                             value={card.value} 
                             visible={card.visible} 
-                            backgroundColor={colorPairs[card.num - 1]} 
+                            backgroundColor={gameMode === 'numbers' || 'letters' || 'symbols' ? colorPairs[card.num - 1] : colorPairs[0]} 
                             textColor="text-white" 
-                            hoverColor={hoverColorPairs[card.num - 1]}
+                            hoverColor={gameMode === 'numbers' || 'letters' || 'symbols' ? hoverColorPairs[card.num - 1] : hoverColorPairs[0]}
                             key={card.id}
                             disabled={matchedCardIds.includes(card.id)}
                             onClick={() => handleCardClick(card.id)}
@@ -231,8 +232,8 @@ export default function Page() {
                         ))}
                     </>
                 </div>
-                {matchAnimation === 'check' && <CheckIcon className='h-40 opacity-50 absolute top-50 left-auto'/>}
-                {matchAnimation === 'cross' && <XMarkIcon className='h-40 opacity-50 absolute top-50 left-auto'/>}
+                {matchAnimation === 'check' && <CheckIcon className='h-40 text-green-400 opacity-60 absolute top-50 left-auto'/>}
+                {matchAnimation === 'cross' && <XMarkIcon className='h-40 text-red-400 opacity-60 absolute top-50 left-auto'/>}
             </div>
 
             <Modal
