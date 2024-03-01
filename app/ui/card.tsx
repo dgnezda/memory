@@ -26,7 +26,7 @@ export function Card({
         <button disabled={disabled} onClick={onClick} className={`${roboto.className} border-white border-4 hover:-translate-y-1 flex justify-center items-center md:h-40 h-20 w-20 md:w-40 rounded-xl ${visible ? backgroundColor : flippedBackgroundColor} ${visible ? hoverColor : flippedHoverColor} py-6 px-6 shadow-md`}>
             <div className={typeof value === 'number' 
                     ? `${textColor} md:text-8xl text-6xl text-center`
-                    : `h-40 self-center`
+                    : `${textColor}`
                 }>
                 {visible ? value : ''}
             </div>

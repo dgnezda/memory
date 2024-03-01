@@ -31,24 +31,24 @@ export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-red-400', 'bg-green-300', 'bg-violet-400', 'bg-gray-600', 'bg-gray-400', 'bg-pink-400', 'bg-orange-300']
     const hoverColorPairs = ['hover:bg-blue-300', 'hover:bg-red-300', 'hover:bg-green-200', 'hover:bg-violet-300', 'hover:bg-gray-500', 'hover:bg-gray-300', 'hover:bg-pink-300', 'hover:bg-orange-200']
     const symbols = [
-        MoonIcon, 
-        MusicalNoteIcon, 
-        HomeIcon, 
-        HeartIcon, 
-        LightBulbIcon, 
-        KeyIcon, 
-        RocketLaunchIcon, 
-        ScissorsIcon,
+        <MoonIcon className='md:h-28 h-12 self-center' />, 
+        <MusicalNoteIcon className='md:h-28 h-12 self-center' />, 
+        <HomeIcon className='md:h-28 h-12 self-center' />, 
+        <HeartIcon className='md:h-28 h-12 self-center' />, 
+        <LightBulbIcon className='md:h-28 h-12 self-center' />, 
+        <KeyIcon className='md:h-28 h-12 self-center' />, 
+        <RocketLaunchIcon className='md:h-28 h-12 self-center' />, 
+        <ScissorsIcon className='md:h-28 h-12 self-center' />,
     ]
     const arrows = [
-        ArrowDownIcon,
-        ArrowDownLeftIcon,
-        ArrowLeftIcon,
-        ArrowUpLeftIcon,
-        ArrowUpIcon,
-        ArrowUpRightIcon,
-        ArrowRightIcon,
-        ArrowDownRightIcon,
+        <ArrowDownIcon className='md:h-28 h-12 self-center' />,
+        <ArrowDownLeftIcon className='md:h-28 h-12 self-center' />,
+        <ArrowLeftIcon className='md:h-28 h-12 self-center' />,
+        <ArrowUpLeftIcon className='md:h-28 h-12 self-center' />,
+        <ArrowUpIcon className='md:h-28 h-12 self-center' />,
+        <ArrowUpRightIcon className='md:h-28 h-12 self-center' />,
+        <ArrowRightIcon className='md:h-28 h-12 self-center' />,
+        <ArrowDownRightIcon className='md:h-28 h-12 self-center' />,
     ]
 
     const getInitialState = (gameMode: string) => {
@@ -110,14 +110,14 @@ export default function Page() {
     }
 
     // Cycle game mode
-    // const cycleGameMode = () => {
-    //     setGameMode(prevMode => {
-    //         const modes = ['numbers', 'arrows', 'symbols']
-    //         const currentIndex = modes.indexOf(prevMode)
-    //         const nextIndex = (currentIndex + 1) % modes.length
-    //         return modes[nextIndex]
-    //     })
-    // }
+    const cycleGameMode = () => {
+        setGameMode(prevMode => {
+            const modes = ['numbers', 'arrows', 'symbols']
+            const currentIndex = modes.indexOf(prevMode)
+            const nextIndex = (currentIndex + 1) % modes.length
+            return modes[nextIndex]
+        })
+    }
 
     // useEffect function for handling card-flipping and keeping track of turns
     useEffect(() => {
@@ -164,10 +164,10 @@ export default function Page() {
         }
     }, [flippedCards, cards]);
 
-    // useEffect(() => {
-    //     setCards(getInitialState(gameMode))
-    //     handleResetGame()
-    // }, [gameMode])
+    useEffect(() => {
+        setCards(getInitialState(gameMode))
+        handleResetGame()
+    }, [gameMode])
 
     const handleCardClick = (cardId: number) => {
         // Check if the clicked card is already flipped
@@ -198,14 +198,21 @@ export default function Page() {
     return (
         <>
             <button onClick={handleResetGame} className='absolute md:top-5 top-44 left-1/4 py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>Reset</button>
-            {/* <button onClick={cycleGameMode} className='absolute md:top-5 top-44 left-2/4 py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>Mode</button> */}
+            <button onClick={cycleGameMode} className='flex absolute md:top-5 top-44 md:left-2/4 right-auto py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>
+                {gameMode === 'numbers' 
+                    ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
+                    : gameMode === 'arrows' 
+                        ? <><ArrowRightIcon className='h-4 m-1' /><ArrowLeftIcon className='h-4 m-1' /><ArrowDownRightIcon className='h-4 m-1' /></>
+                        : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
+                }
+            </button>
             <p className='absolute md:top-5 top-44 right-1/4 py-2 px-4 bg-slate-50 rounded-xl'>Turns: {turns}</p>
             <div className='flex justify-center items-center md:h-full'>
                 <div className='grid grid-cols-4 md:gap-10 gap-5'>
                     <>
                         {cards.map(card => (
                         <Card 
-                            value={card.num} 
+                            value={card.value} 
                             visible={card.visible} 
                             backgroundColor={colorPairs[card.num - 1]} 
                             textColor="text-white" 
