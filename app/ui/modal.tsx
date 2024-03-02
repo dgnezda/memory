@@ -1,22 +1,27 @@
 export default function Modal({
-    isOpen, 
-    message,
-    onClose,
+  isOpen,
+  message,
+  onClose,
 }: {
-    isOpen: boolean;
-    message: string;
-    onClose: () => void;
+  isOpen: boolean;
+  message: string;
+  onClose: () => void;
 }) {
-    return (
-        <>
-        {isOpen && (
-            <div className="fixed top-5 left-15 backdrop-blur-lg flex justify-center items-center rounded-xl">
-                <div className="p-20 rounded-xl shadow-lg">
-                    <p className="text-white font-semibold text-3xl mb-5">{message}</p>
-                    <button className="bg-gray-700 font-bold text-white border-0 py-5 px-20 rounded-xl cursor-pointer hover:bg-gray-600" onClick={onClose}>OK</button>
-                </div>
-            </div>
-        )}
-        </>
-    )
+  return (
+    <>
+      {isOpen && (
+        <div className="left-15 fixed top-5 flex items-center justify-center rounded-xl backdrop-blur-lg">
+          <div className="rounded-xl p-20 shadow-lg">
+            <p className="mb-5 text-3xl font-semibold text-white">{message}</p>
+            <button
+              className="cursor-pointer rounded-xl border-0 bg-gray-700 px-20 py-5 font-bold text-white hover:bg-gray-600"
+              onClick={onClose}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
