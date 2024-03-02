@@ -3,14 +3,9 @@ export type User = {
     name: string;
     email: string;
     password: string;
-    games_played: number;
+    games_played: Game[]
     scores: number[];
   };
-
-export type Card = {
-    value: number;
-    visibile: boolean; 
-}
 
 export type Score = {
   id: string;
@@ -19,12 +14,15 @@ export type Score = {
   date: string;
 }
 
-export type HighScoreTable = {
+export type Game = {
   id: string;
-  name: string;
-  score: string | number;
+  mode: 'numbers' | 'letters' | 'symbols' | 'arrows'
+  user: User;
+  score: number;
+  time: number;
   date: string;
 }
+
 
 export type UserSettings = {
   mode: 'dark' | 'light'
