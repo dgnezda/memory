@@ -175,12 +175,12 @@ export default function Page() {
       // Increment turns
       setTurns((prevTurns) => prevTurns + 1);
     }
-  }, [flippedCards, cards]);
+  }, [flippedCards, cards, getInitialState, handleResetGame]);
 
   useEffect(() => {
     setCards(getInitialState(gameMode));
     handleResetGame();
-  }, [getInitialState, gameMode, handleResetGame]); //, [gameMode] after }
+  }, [getInitialState, gameMode, handleResetGame]);
 
   const handleCardClick = (cardId: number) => {
     // Check if the clicked card is already flipped
