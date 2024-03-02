@@ -48,24 +48,24 @@ export default function Page() {
     'hover:bg-orange-200',
   ];
   const symbols = [
-    <MoonIcon key="moon" className="h-12 self-center md:h-28" />,
-    <MusicalNoteIcon key="music" className="h-12 self-center md:h-28" />,
-    <HomeIcon key="home" className="h-12 self-center md:h-28" />,
-    <HeartIcon key="heart" className="h-12 self-center md:h-28" />,
-    <LightBulbIcon key="bulb" className="h-12 self-center md:h-28" />,
-    <KeyIcon key="keys" className="h-12 self-center md:h-28" />,
-    <RocketLaunchIcon key="rocket" className="h-12 self-center md:h-28" />,
-    <ScissorsIcon key="scissors" className="h-12 self-center md:h-28" />,
+    <MoonIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <MusicalNoteIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <HomeIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <HeartIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <LightBulbIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <KeyIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <RocketLaunchIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ScissorsIcon key={Date.now()} className="h-12 self-center md:h-28" />,
   ];
   const arrows = [
-    <ArrowDownIcon key="arrow1" className="h-12 self-center md:h-28" />,
-    <ArrowDownLeftIcon key="arrow2" className="h-12 self-center md:h-28" />,
-    <ArrowLeftIcon key="arrow3" className="h-12 self-center md:h-28" />,
-    <ArrowUpLeftIcon key="arrow4" className="h-12 self-center md:h-28" />,
-    <ArrowUpIcon key="arrow5" className="h-12 self-center md:h-28" />,
-    <ArrowUpRightIcon key="arrow6" className="h-12 self-center md:h-28" />,
-    <ArrowRightIcon key="arrow7" className="h-12 self-center md:h-28" />,
-    <ArrowDownRightIcon key="arrow8" className="h-12 self-center md:h-28" />,
+    <ArrowDownIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowDownLeftIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowLeftIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowUpLeftIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowUpIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowUpRightIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowRightIcon key={Date.now()} className="h-12 self-center md:h-28" />,
+    <ArrowDownRightIcon key={Date.now()} className="h-12 self-center md:h-28" />,
   ];
   const letters = ['A', 'M', 'D', 'J', 'E', 'Y', 'P', 'Z'];
 
@@ -229,15 +229,15 @@ export default function Page() {
           <p className="mx-3">A&nbsp;&nbsp;B&nbsp;&nbsp;C</p>
         ) : gameMode === 'arrows' ? (
           <>
-            <ArrowRightIcon className="m-1 h-4" />
-            <ArrowLeftIcon className="m-1 h-4" />
-            <ArrowDownRightIcon className="m-1 h-4" />
+            <ArrowRightIcon key={Date.now()} className="m-1 h-4" />
+            <ArrowLeftIcon key={Date.now()} className="m-1 h-4" />
+            <ArrowDownRightIcon key={Date.now()} className="m-1 h-4" />
           </>
         ) : (
           <>
-            <LightBulbIcon className="m-1 h-4" />
-            <HeartIcon className="m-1 h-4" />
-            <RocketLaunchIcon className="m-1 h-4" />
+            <LightBulbIcon key={Date.now()} className="m-1 h-4" />
+            <HeartIcon key={Date.now()} className="m-1 h-4" />
+            <RocketLaunchIcon key={Date.now()} className="m-1 h-4" />
           </>
         )}
       </button>
@@ -262,7 +262,7 @@ export default function Page() {
                     ? hoverColorPairs[card.num - 1]
                     : hoverColorPairs[0]
                 }
-                key={card.id}
+                key={Date.now()}
                 disabled={matchedCardIds.includes(card.id)}
                 onClick={() => handleCardClick(card.id)}
               />
@@ -270,14 +270,15 @@ export default function Page() {
           </>
         </div>
         {matchAnimation === 'check' && (
-          <CheckIcon className="top-50 absolute left-auto h-40 text-green-400 opacity-60" />
+          <CheckIcon key={Date.now()} className="top-50 absolute left-auto h-40 text-green-400 opacity-60" />
         )}
         {matchAnimation === 'cross' && (
-          <XMarkIcon className="top-50 absolute left-auto h-40 text-red-400 opacity-60" />
+          <XMarkIcon key={Date.now()} className="top-50 absolute left-auto h-40 text-red-400 opacity-60" />
         )}
       </div>
 
       <Modal
+        key={Date.now()}
         isOpen={showModal}
         message={`Good job! You found all pairs in  ${turns} turns! Do you want to play again?`}
         onClose={() => {

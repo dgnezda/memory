@@ -12,7 +12,7 @@ export default function Home() {
 
       <div className="mb-20 grid grid-cols-4 grid-rows-4 items-center justify-center gap-5">
         {squareArr.map((sqr, idx) => (
-          <div key={`${idx}`} className="h-20 w-20 bg-gray-300"></div>
+          <div key={Date.now()} className="h-20 w-20 bg-gray-300"></div>
         ))}
       </div>
       <Link
@@ -20,7 +20,7 @@ export default function Home() {
         className="mb-20 flex items-center gap-5 self-auto rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
       >
         <span>Play</span>{' '}
-        <ArrowRightIcon key="arrow_right" className="w-5 md:w-6" />
+        <ArrowRightIcon  key={Date.now()} className="w-5 md:w-6" />
       </Link>
     </main>
   );
