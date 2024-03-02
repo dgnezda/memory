@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { generateRandomBoard } from '../../lib/utils';
 import { Card } from '../../ui/card';
 import Modal from '@/app/ui/modal';
@@ -69,7 +69,7 @@ export default function Page() {
   ];
   const letters = ['A', 'M', 'D', 'J', 'E', 'Y', 'P', 'Z'];
 
-  const getInitialState = (gameMode: string) => {
+  const getInitialState = useCallback((gameMode: string) => {
     // Get random board, make initial board state object array
     const board = generateRandomBoard();
     const boardArray: any[] = [];
@@ -102,7 +102,7 @@ export default function Page() {
       { id: 16, num: board[15], value: boardArray[15], visible: false },
     ];
     return initialState;
-  };
+  }, []);
 
   // States
   const [gameMode, setGameMode] = useState('numbers'); //<'numbers' | 'arrows' | 'symbols'>
@@ -115,13 +115,13 @@ export default function Page() {
 
   // Reset game
   // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
-  const handleResetGame = () => {
+  const handleResetGame = useCallback(() => {
     const newInitialState = getInitialState(gameMode);
     setCards(newInitialState);
     setFlippedCards([]);
     setTurns(0);
     setMatchedCardIds([]);
-  };
+  }, [gameMode, getInitialState]);
 
   // Cycle game mode
   const cycleGameMode = () => {
@@ -175,12 +175,12 @@ export default function Page() {
       // Increment turns
       setTurns((prevTurns) => prevTurns + 1);
     }
-  }, [flippedCards, cards, getInitialState, handleResetGame]);
+  }, [flippedCards, cards]); // , getInitialState, handleResetGame
 
   useEffect(() => {
     setCards(getInitialState(gameMode));
     handleResetGame();
-  }, [getInitialState, gameMode, handleResetGame]);
+  }, [getInitialState, gameMode, handleResetGame]); //, 
 
   const handleCardClick = (cardId: number) => {
     // Check if the clicked card is already flipped
@@ -278,7 +278,7 @@ export default function Page() {
       </div>
 
       <Modal
-        key={Date.now()}
+       key={Date.now()}
         isOpen={showModal}
         message={`Good job! You found all pairs in  ${turns} turns! Do you want to play again?`}
         onClose={() => {

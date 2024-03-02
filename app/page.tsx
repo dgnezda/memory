@@ -16,7 +16,7 @@ export default function Home() {
         ))}
       </div>
       <Link
-        href="/login"
+        href="/dashboard/game"
         className="mb-20 flex items-center gap-5 self-auto rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
       >
         <span>Play</span>{' '}
