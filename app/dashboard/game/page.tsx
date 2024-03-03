@@ -14,7 +14,6 @@ import {
     KeyIcon, 
     RocketLaunchIcon, 
     ScissorsIcon,
-
     ArrowDownIcon,
     ArrowDownLeftIcon,
     ArrowLeftIcon,
@@ -23,7 +22,6 @@ import {
     ArrowUpRightIcon,
     ArrowRightIcon,
     ArrowDownRightIcon,
-
     CheckIcon,
     XMarkIcon,
     ArrowPathIcon,
@@ -34,24 +32,24 @@ export default function Page() {
     const hoverColorPairs = ['hover:bg-blue-300', 'hover:bg-red-300', 'hover:bg-green-200', 'hover:bg-violet-300', 'hover:bg-gray-500', 'hover:bg-gray-300', 'hover:bg-pink-300', 'hover:bg-orange-200']
     const iconStyle = 'md:h-28 h-12 self-center'
     const symbols = [
-        <MoonIcon className={iconStyle} />, 
-        <MusicalNoteIcon className={iconStyle} />, 
-        <HomeIcon className={iconStyle} />, 
-        <HeartIcon className={iconStyle} />, 
-        <LightBulbIcon className={iconStyle} />, 
-        <KeyIcon className={iconStyle} />, 
-        <RocketLaunchIcon className={iconStyle} />, 
-        <ScissorsIcon className={iconStyle} />,
+        <MoonIcon key={Date.now()} className={iconStyle} />, 
+        <MusicalNoteIcon key={Date.now()} className={iconStyle} />, 
+        <HomeIcon key={Date.now()} className={iconStyle} />, 
+        <HeartIcon key={Date.now()} className={iconStyle} />, 
+        <LightBulbIcon key={Date.now()} className={iconStyle} />, 
+        <KeyIcon key={Date.now()} className={iconStyle} />, 
+        <RocketLaunchIcon key={Date.now()} className={iconStyle} />, 
+        <ScissorsIcon key={Date.now()} className={iconStyle} />,
     ]
     const arrows = [
-        <ArrowDownIcon className={iconStyle} />,
-        <ArrowDownLeftIcon className={iconStyle} />,
-        <ArrowLeftIcon className={iconStyle} />,
-        <ArrowUpLeftIcon className={iconStyle} />,
-        <ArrowUpIcon className={iconStyle} />,
-        <ArrowUpRightIcon className={iconStyle} />,
-        <ArrowRightIcon className={iconStyle} />,
-        <ArrowDownRightIcon className={iconStyle} />,
+        <ArrowDownIcon key={Date.now()} className={iconStyle} />,
+        <ArrowDownLeftIcon key={Date.now()} className={iconStyle} />,
+        <ArrowLeftIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUpLeftIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUpIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUpRightIcon key={Date.now()} className={iconStyle} />,
+        <ArrowRightIcon key={Date.now()} className={iconStyle} />,
+        <ArrowDownRightIcon key={Date.now()} className={iconStyle} />,
     ]
     const alphabet = 'ABCDEFGHIJKLMNOPQERSTUVWXYZ'.split('')
     
@@ -65,6 +63,7 @@ export default function Page() {
         // Get random board, make initial board state object array
         const board = generateRandomBoard()
         const boardArray: any[] = []
+
         if (gameMode === 'arrows') {
             board.map(num => (
                 boardArray.push(arrows[num - 1])
@@ -85,7 +84,6 @@ export default function Page() {
         }
 
         const initialState: CardType[] = []
-
         boardArray.map((val, idx) => (
             initialState.push({ id: (idx + 1), num: board[idx], value: val, visible: false })
         ))
