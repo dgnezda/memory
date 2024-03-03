@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { generateRandomBoard } from '../../lib/utils';
 import { Card } from '../../ui/card';
+import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/modal';
 import { 
     MoonIcon, 
@@ -31,27 +32,34 @@ import {
 export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-red-400', 'bg-green-300', 'bg-violet-400', 'bg-gray-600', 'bg-gray-400', 'bg-pink-400', 'bg-orange-300']
     const hoverColorPairs = ['hover:bg-blue-300', 'hover:bg-red-300', 'hover:bg-green-200', 'hover:bg-violet-300', 'hover:bg-gray-500', 'hover:bg-gray-300', 'hover:bg-pink-300', 'hover:bg-orange-200']
+    const iconStyle = 'md:h-28 h-12 self-center'
     const symbols = [
-        <MoonIcon className='md:h-28 h-12 self-center' />, 
-        <MusicalNoteIcon className='md:h-28 h-12 self-center' />, 
-        <HomeIcon className='md:h-28 h-12 self-center' />, 
-        <HeartIcon className='md:h-28 h-12 self-center' />, 
-        <LightBulbIcon className='md:h-28 h-12 self-center' />, 
-        <KeyIcon className='md:h-28 h-12 self-center' />, 
-        <RocketLaunchIcon className='md:h-28 h-12 self-center' />, 
-        <ScissorsIcon className='md:h-28 h-12 self-center' />,
+        <MoonIcon className={iconStyle} />, 
+        <MusicalNoteIcon className={iconStyle} />, 
+        <HomeIcon className={iconStyle} />, 
+        <HeartIcon className={iconStyle} />, 
+        <LightBulbIcon className={iconStyle} />, 
+        <KeyIcon className={iconStyle} />, 
+        <RocketLaunchIcon className={iconStyle} />, 
+        <ScissorsIcon className={iconStyle} />,
     ]
     const arrows = [
-        <ArrowDownIcon className='md:h-28 h-12 self-center' />,
-        <ArrowDownLeftIcon className='md:h-28 h-12 self-center' />,
-        <ArrowLeftIcon className='md:h-28 h-12 self-center' />,
-        <ArrowUpLeftIcon className='md:h-28 h-12 self-center' />,
-        <ArrowUpIcon className='md:h-28 h-12 self-center' />,
-        <ArrowUpRightIcon className='md:h-28 h-12 self-center' />,
-        <ArrowRightIcon className='md:h-28 h-12 self-center' />,
-        <ArrowDownRightIcon className='md:h-28 h-12 self-center' />,
+        <ArrowDownIcon className={iconStyle} />,
+        <ArrowDownLeftIcon className={iconStyle} />,
+        <ArrowLeftIcon className={iconStyle} />,
+        <ArrowUpLeftIcon className={iconStyle} />,
+        <ArrowUpIcon className={iconStyle} />,
+        <ArrowUpRightIcon className={iconStyle} />,
+        <ArrowRightIcon className={iconStyle} />,
+        <ArrowDownRightIcon className={iconStyle} />,
     ]
-    const letters = ['A', 'M', 'D', 'J', 'E', 'Y', 'P', 'Z']
+    const alphabet = 'ABCDEFGHIJKLMNOPQERSTUVWXYZ'.split('')
+    
+    const getRandomLetters = (arr: string[], num: number) => {
+        // Get random selection of lettes from array
+        const shuffledABC = [...arr].sort(() => 0.5 - Math.random())
+        return shuffledABC.slice(0, num)
+    }
 
     const getInitialState = (gameMode: string) => {
         // Get random board, make initial board state object array
@@ -66,6 +74,7 @@ export default function Page() {
                 boardArray.push(symbols[num - 1])
             ))
         } else if (gameMode === 'letters') {
+            const letters = getRandomLetters(alphabet, 8)
             board.map(num => (
                 boardArray.push(letters[num - 1])
             ))
@@ -75,24 +84,12 @@ export default function Page() {
             ))
         }
 
-        const initialState = [
-        { id: 1, num: board[0], value: boardArray[0], visible: false},
-        { id: 2, num: board[1], value: boardArray[1], visible: false},
-        { id: 3, num: board[2], value: boardArray[2], visible: false},
-        { id: 4, num: board[3], value: boardArray[3], visible: false},
-        { id: 5, num: board[4], value: boardArray[4], visible: false},
-        { id: 6, num: board[5], value: boardArray[5], visible: false},
-        { id: 7, num: board[6], value: boardArray[6], visible: false},
-        { id: 8, num: board[7], value: boardArray[7], visible: false},
-        { id: 9, num: board[8], value: boardArray[8], visible: false},
-        { id: 10, num: board[9], value: boardArray[9], visible: false},
-        { id: 11, num: board[10], value: boardArray[10], visible: false},
-        { id: 12, num: board[11], value: boardArray[11], visible: false},
-        { id: 13, num: board[12], value: boardArray[12], visible: false},
-        { id: 14, num: board[13], value: boardArray[13], visible: false},
-        { id: 15, num: board[14], value: boardArray[14], visible: false},
-        { id: 16, num: board[15], value: boardArray[15], visible: false},
-        ]
+        const initialState: CardType[] = []
+
+        boardArray.map((val, idx) => (
+            initialState.push({ id: (idx + 1), num: board[idx], value: val, visible: false })
+        ))
+
         return initialState
     }
     

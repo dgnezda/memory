@@ -7,9 +7,11 @@ export type User = {
     scores: number[];
   };
 
-export type Card = {
-    value: number;
-    visibile: boolean; 
+export type CardType = {
+    id: number;
+    num: number;
+    value: number | JSX.Element;
+    visible: boolean;
 }
 
 export type Score = {
