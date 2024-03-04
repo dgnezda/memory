@@ -14,6 +14,14 @@ import {
     KeyIcon, 
     RocketLaunchIcon, 
     ScissorsIcon,
+    BeakerIcon,
+    BellIcon,
+    BoltIcon,
+    BugAntIcon,
+    GiftIcon,
+    SparklesIcon,
+    StarIcon,
+    TruckIcon,
     ArrowDownIcon,
     ArrowDownLeftIcon,
     ArrowLeftIcon,
@@ -22,6 +30,14 @@ import {
     ArrowUpRightIcon,
     ArrowRightIcon,
     ArrowDownRightIcon,
+    ArrowsPointingInIcon,
+    ArrowsPointingOutIcon,
+    ArrowsRightLeftIcon,
+    ArrowsUpDownIcon,
+    ArrowUturnDownIcon,
+    ArrowUturnLeftIcon,
+    ArrowUturnRightIcon,
+    ArrowUturnUpIcon,
     CheckIcon,
     XMarkIcon,
     ArrowPathIcon,
@@ -40,6 +56,14 @@ export default function Page() {
         <KeyIcon key={Date.now()} className={iconStyle} />, 
         <RocketLaunchIcon key={Date.now()} className={iconStyle} />, 
         <ScissorsIcon key={Date.now()} className={iconStyle} />,
+        <BeakerIcon key={Date.now()} className={iconStyle} />,
+        <BellIcon key={Date.now()} className={iconStyle} />,
+        <BoltIcon key={Date.now()} className={iconStyle} />,
+        <BugAntIcon key={Date.now()} className={iconStyle} />,
+        <GiftIcon key={Date.now()} className={iconStyle} />,
+        <SparklesIcon key={Date.now()} className={iconStyle} />,
+        <StarIcon key={Date.now()} className={iconStyle} />,
+        <TruckIcon key={Date.now()} className={iconStyle} />,
     ]
     const arrows = [
         <ArrowDownIcon key={Date.now()} className={iconStyle} />,
@@ -50,10 +74,19 @@ export default function Page() {
         <ArrowUpRightIcon key={Date.now()} className={iconStyle} />,
         <ArrowRightIcon key={Date.now()} className={iconStyle} />,
         <ArrowDownRightIcon key={Date.now()} className={iconStyle} />,
+        <ArrowsPointingInIcon key={Date.now()} className={iconStyle} />,
+        <ArrowsPointingOutIcon key={Date.now()} className={iconStyle} />,
+        <ArrowsRightLeftIcon key={Date.now()} className={iconStyle} />,
+        <ArrowsUpDownIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUturnDownIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUturnLeftIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUturnRightIcon key={Date.now()} className={iconStyle} />,
+        <ArrowUturnUpIcon key={Date.now()} className={iconStyle} />,
     ]
     const alphabet = 'ABCDEFGHIJKLMNOPQERSTUVWXYZ'.split('')
+    const mathNums = '0123456789π'.split('')
     
-    const getRandomLetters = (arr: string[], num: number) => {
+    const getRandomCardFaces = (arr: string[] | JSX.Element[], num: number) => {
         // Get random selection of lettes from array
         const shuffledABC = [...arr].sort(() => 0.5 - Math.random())
         return shuffledABC.slice(0, num)
@@ -65,21 +98,24 @@ export default function Page() {
         const boardArray: any[] = []
 
         if (gameMode === 'arrows') {
+            const arrowFaces = getRandomCardFaces(arrows, 8)
             board.map(num => (
-                boardArray.push(arrows[num - 1])
+                boardArray.push(arrowFaces[num - 1])
             ))
         } else if (gameMode === 'symbols') {
+            const symbolFaces = getRandomCardFaces(symbols, 8)
             board.map(num => (
-                boardArray.push(symbols[num - 1])
+                boardArray.push(symbolFaces[num - 1])
             ))
         } else if (gameMode === 'letters') {
-            const letters = getRandomLetters(alphabet, 8)
+            const letters = getRandomCardFaces(alphabet, 8)
             board.map(num => (
                 boardArray.push(letters[num - 1])
             ))
         } else {
+            const nums = getRandomCardFaces(mathNums, 8)
             board.map(num => (
-                boardArray.push(num)
+                boardArray.push(nums[num - 1])
             ))
         }
 
