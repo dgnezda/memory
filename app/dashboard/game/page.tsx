@@ -45,7 +45,7 @@ import {
 
 export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-red-400', 'bg-green-300', 'bg-violet-400', 'bg-gray-600', 'bg-gray-400', 'bg-pink-400', 'bg-orange-300']
-    const hoverColorPairs = ['hover:bg-blue-300', 'hover:bg-red-300', 'hover:bg-green-200', 'hover:bg-violet-300', 'hover:bg-gray-500', 'hover:bg-gray-300', 'hover:bg-pink-300', 'hover:bg-orange-200']
+    const hoverColorPairs = ['md:hover:bg-blue-300', 'md:hover:bg-red-300', 'md:hover:bg-green-200', 'md:hover:bg-violet-300', 'md:hover:bg-gray-500', 'md:hover:bg-gray-300', 'md:hover:bg-pink-300', 'md:hover:bg-orange-200']
     const iconStyle = 'md:h-28 h-12 self-center'
     const symbols = [
         <MoonIcon key={Date.now()} className={iconStyle} />, 
@@ -245,15 +245,14 @@ export default function Page() {
                         visible={card.visible} 
                         backgroundColor={gameMode === 'arrows' ? colorPairs[0] : colorPairs[card.num - 1]} 
                         textColor="text-white" 
-                        hoverColor={gameMode === 'arrows' ? hoverColorPairs[0] : hoverColorPairs[card.num - 1]}
                         key={card.id}
                         disabled={matchedCardIds.includes(card.id)}
                         onClick={() => handleCardClick(card.id)}
                     />
                     ))}   
                 </div>
-                {matchAnimation === 'check' && <CheckIcon className='h-40 text-green-400 opacity-60 absolute md:top-96 top-[374px] left-auto'/>}
-                {matchAnimation === 'cross' && <XMarkIcon className='h-40 text-red-400 opacity-60 absolute md:top-96 top-[374px]  left-auto'/>}
+                {matchAnimation === 'check' && <CheckIcon className='h-40 text-green-400 opacity-60 absolute md:top-96 top-[288px] left-auto'/>}
+                {matchAnimation === 'cross' && <XMarkIcon className='h-40 text-red-400 opacity-60 absolute md:top-96 top-[288px]  left-auto'/>}
             </div>
 
             <Modal
