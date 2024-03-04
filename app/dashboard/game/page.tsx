@@ -132,13 +132,13 @@ export default function Page() {
 
     // Reset game
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
-    const handleResetGame = useRef(() => {
+    const handleResetGame = () => {
         const newInitialState = getInitialState(gameMode)
         setCards(newInitialState)
         setFlippedCards([])
         setTurns(0)
         setMatchedCardIds([])
-    })
+    }
 
     // Cycle game mode
     const cycleGameMode = () => {
