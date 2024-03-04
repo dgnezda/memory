@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { generateRandomBoard } from '../../lib/utils';
+import { generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
 import { Card } from '../../ui/card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/modal';
@@ -86,12 +86,6 @@ export default function Page() {
     const alphabet = 'ABCDEFGHIJKLMNOPQERSTUVWXYZ'.split('')
     const mathNums = '0123456789π'.split('')
     
-    const getRandomCardFaces = (arr: string[] | JSX.Element[], num: number) => {
-        // Get random selection of lettes from array
-        const shuffledABC = [...arr].sort(() => 0.5 - Math.random())
-        return shuffledABC.slice(0, num)
-    }
-
     const getInitialState = (gameMode: string) => {
         // Get random board, make initial board state object array
         const board = generateRandomBoard()
@@ -128,7 +122,7 @@ export default function Page() {
     }
     
     // States
-    const [gameMode, setGameMode] = useState('numbers') //<'numbers' | 'arrows' | 'symbols'>
+    const [gameMode, setGameMode] = useState('numbers')
     const [cards, setCards] = useState(getInitialState(gameMode))
     const [flippedCards, setFlippedCards] = useState<number[]>([]);
     const [showModal, setShowModal] = useState(false)
@@ -165,13 +159,11 @@ export default function Page() {
                 setShowModal(true)
             }, 500)
         }
-
         // Check if there are exactly 2 flipped cards
         if (flippedCards.length === 2) {
             const [card1Id, card2Id] = flippedCards;
             const card1 = cards.find(card => card.id === card1Id);
             const card2 = cards.find(card => card.id === card2Id);
-    
             // Check if the two flipped cards have the same number
             if (card1 && card2 && card1.num === card2.num) {
                 // Matched pair: Keep cards visible, clear flipped cards
@@ -204,19 +196,17 @@ export default function Page() {
     useEffect(() => {
         setCards(getInitialState(gameMode))
         handleResetGame()
-    }, [gameMode])
+    }, [])
 
     const handleCardClick = (cardId: number) => {
         // Check if the clicked card is already flipped
         if (flippedCards.includes(cardId) || flippedCards.length === 2) {
             return; // Ignore click if the card is already flipped
         }
-    
         // If there are already 2 flipped cards, do nothing
         if (flippedCards.length === 2 || flippedCards.length > 1 && cards.find(card => card.visible)) {
             return;
         }
-    
         // Toggle the visibility of the clicked card
         setCards(prevCards => {
             return prevCards.map(card => {
@@ -227,10 +217,9 @@ export default function Page() {
                 }
             });
         });
-    
         // Add the clicked card to the list of flipped cards
         setFlippedCards(prevFlippedCards => [...prevFlippedCards, cardId]);
-      };
+    };
 
     return (
         <>

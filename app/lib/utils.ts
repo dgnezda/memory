@@ -14,7 +14,6 @@ export const formatDateToLocal = (
 
 export function generateRandomBoard(): number[] {
   const unshuffledBoard = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
-
   const shuffle = (array: number[]) => { 
     for (let i = array.length - 1; i > 0; i--) { 
       const j = Math.floor(Math.random() * (i + 1)); 
@@ -22,8 +21,13 @@ export function generateRandomBoard(): number[] {
     } 
     return array; 
   }; 
-
   const shuffledBoard = shuffle(unshuffledBoard)
-
   return shuffledBoard
 }
+
+export const getRandomCardFaces = (arr: string[] | JSX.Element[], num: number) => {
+  // Get random selection of lettes from array
+  const shuffledABC = [...arr].sort(() => 0.5 - Math.random())
+  return shuffledABC.slice(0, num)
+}
+
