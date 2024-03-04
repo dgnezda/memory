@@ -196,7 +196,7 @@ export default function Page() {
     useEffect(() => {
         setCards(getInitialState(gameMode))
         handleResetGame()
-    }, [])
+    }, [gameMode])
 
     const handleCardClick = (cardId: number) => {
         // Check if the clicked card is already flipped
@@ -223,8 +223,8 @@ export default function Page() {
 
     return (
         <>
-            <button onClick={handleResetGame} className='absolute md:top-5 top-44 left-1/4 py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
-            <button onClick={cycleGameMode} className='flex absolute md:top-5 top-44 md:left-2/4 right-auto py-2 px-4 bg-slate-50 hover:animate-pulse rounded-xl'>
+            <button onClick={handleResetGame} className='absolute md:top-5 top-44 left-1/4 py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
+            <button onClick={cycleGameMode} className='flex absolute md:top-5 top-44 md:left-2/4 right-auto py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'>
                 {gameMode === 'numbers' 
                     ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
                     : gameMode === 'letters' 
