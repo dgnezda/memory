@@ -26,7 +26,6 @@ export function generateRandomBoard(): number[] {
 }
 
 export const getRandomCardFaces = (arr: string[] | JSX.Element[], num: number) => {
-  // Get random selection of lettes from array
   const shuffledABC = [...arr].sort(() => 0.5 - Math.random())
   return shuffledABC.slice(0, num)
 }

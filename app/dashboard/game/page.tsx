@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
 import { Card } from '../../ui/card';
 import { CardType } from '@/app/lib/definitions';
@@ -132,13 +132,13 @@ export default function Page() {
 
     // Reset game
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
-    const handleResetGame = () => {
+    const handleResetGame = useRef(() => {
         const newInitialState = getInitialState(gameMode)
         setCards(newInitialState)
         setFlippedCards([])
         setTurns(0)
         setMatchedCardIds([])
-    }
+    })
 
     // Cycle game mode
     const cycleGameMode = () => {
