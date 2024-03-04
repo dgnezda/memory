@@ -83,7 +83,7 @@ export default function Page() {
         <ArrowUturnRightIcon key={Date.now()} className={iconStyle} />,
         <ArrowUturnUpIcon key={Date.now()} className={iconStyle} />,
     ]
-    const alphabet = 'ABCDEFGHIJKLMNOPQERSTUVWXYZ'.split('')
+    const alphabet = 'ABCČDEFGHIJKLMNOPQRSŠTUVWXYZŽ'.split('')
     const mathNums = '0123456789π'.split('')
     
     const getInitialState = (gameMode: string) => {
@@ -243,9 +243,9 @@ export default function Page() {
                     <Card 
                         value={card.value} 
                         visible={card.visible} 
-                        backgroundColor={gameMode === 'numbers' || 'letters' || 'symbols' ? colorPairs[card.num - 1] : colorPairs[0]} 
+                        backgroundColor={gameMode === 'arrows' ? colorPairs[0] : colorPairs[card.num - 1]} 
                         textColor="text-white" 
-                        hoverColor={gameMode === 'numbers' || 'letters' || 'symbols' ? hoverColorPairs[card.num - 1] : hoverColorPairs[0]}
+                        hoverColor={gameMode === 'arrows' ? hoverColorPairs[0] : hoverColorPairs[card.num - 1]}
                         key={card.id}
                         disabled={matchedCardIds.includes(card.id)}
                         onClick={() => handleCardClick(card.id)}
