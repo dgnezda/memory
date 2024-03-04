@@ -223,42 +223,42 @@ export default function Page() {
 
     return (
         <>
-            <button onClick={handleResetGame} className='absolute md:top-5 top-44 left-1/4 py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
-            <button onClick={cycleGameMode} className='flex absolute md:top-5 top-44 md:left-2/4 right-auto py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'>
-                {gameMode === 'numbers' 
-                    ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
-                    : gameMode === 'letters' 
-                        ? <p className='mx-3'>A&nbsp;&nbsp;B&nbsp;&nbsp;C</p> 
-                        : gameMode === 'arrows' 
-                            ? <><ArrowRightIcon className='h-4 m-1' /><ArrowLeftIcon className='h-4 m-1' /><ArrowDownRightIcon className='h-4 m-1' /></>
-                            : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
-                }
-            </button>
-            <p className='absolute md:top-5 top-44 right-1/4 py-2 px-4 bg-slate-50 rounded-xl'>Turns: {turns}</p>
-            <div className='flex justify-center items-center md:h-full'>
-                <div className='grid grid-cols-4 md:gap-10 gap-5'>
-                    <>
-                        {cards.map(card => (
-                        <Card 
-                            value={card.value} 
-                            visible={card.visible} 
-                            backgroundColor={gameMode === 'numbers' || 'letters' || 'symbols' ? colorPairs[card.num - 1] : colorPairs[0]} 
-                            textColor="text-white" 
-                            hoverColor={gameMode === 'numbers' || 'letters' || 'symbols' ? hoverColorPairs[card.num - 1] : hoverColorPairs[0]}
-                            key={card.id}
-                            disabled={matchedCardIds.includes(card.id)}
-                            onClick={() => handleCardClick(card.id)}
-                        />
-                        ))}
-                    </>
+            <div className='flex justify-around md:h-10 mt-4 md:w-full'>
+                <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
+                <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'>
+                    {gameMode === 'numbers' 
+                        ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
+                        : gameMode === 'letters' 
+                            ? <p className='mx-3'>A&nbsp;&nbsp;B&nbsp;&nbsp;C</p> 
+                            : gameMode === 'arrows' 
+                                ? <><ArrowRightIcon className='h-4 m-1' /><ArrowLeftIcon className='h-4 m-1' /><ArrowDownRightIcon className='h-4 m-1' /></>
+                                : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
+                    }
+                </button>
+                <p className='py-2 px-4 bg-slate-50 rounded-xl'>Turns: {turns}</p>
+            </div>
+            <div className='flex justify-center items-start mt-10 md:h-full'>    
+                <div className='grid grid-cols-4 md:gap-8 gap-5'>
+                    {cards.map(card => (
+                    <Card 
+                        value={card.value} 
+                        visible={card.visible} 
+                        backgroundColor={gameMode === 'numbers' || 'letters' || 'symbols' ? colorPairs[card.num - 1] : colorPairs[0]} 
+                        textColor="text-white" 
+                        hoverColor={gameMode === 'numbers' || 'letters' || 'symbols' ? hoverColorPairs[card.num - 1] : hoverColorPairs[0]}
+                        key={card.id}
+                        disabled={matchedCardIds.includes(card.id)}
+                        onClick={() => handleCardClick(card.id)}
+                    />
+                    ))}   
                 </div>
-                {matchAnimation === 'check' && <CheckIcon className='h-40 text-green-400 opacity-60 absolute top-50 left-auto'/>}
-                {matchAnimation === 'cross' && <XMarkIcon className='h-40 text-red-400 opacity-60 absolute top-50 left-auto'/>}
+                {matchAnimation === 'check' && <CheckIcon className='h-40 text-green-400 opacity-60 absolute md:top-96 top-[374px] left-auto'/>}
+                {matchAnimation === 'cross' && <XMarkIcon className='h-40 text-red-400 opacity-60 absolute md:top-96 top-[374px]  left-auto'/>}
             </div>
 
             <Modal
                 isOpen={showModal}
-                message={`Good job! You found all pairs in  ${turns} turns! Do you want to play again?`}
+                message={`Good job! You found all pairs in ${turns} turns! Do you want to play again?`}
                 onClose={() => {
                     setShowModal(false)
                     handleResetGame()
