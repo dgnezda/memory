@@ -24,8 +24,6 @@ export function Card({
     const flippedHoverColor = 'hover:bg-gradient-to-l'
 
     const [playClick] = useSound(sound)
-    // const [playClick] = useSound('/sounds/switch_007.mp3')
-
 
     return (
         <button 
@@ -33,8 +31,6 @@ export function Card({
             onClick={() => {
                 onClick();
                 playClick();
-                console.log('clicked');
-                
             }} 
             className={`${roboto.className}
             border-white border-4 
