@@ -89,7 +89,7 @@ export default function Page() {
     const alphabet = 'ABCČDEFGHIJKLMNOPQRSŠTUVWXYZŽ'.split('')
     const mathNums = '0123456789π'.split('')
     
-    const getInitialState = (gameMode: string) => {
+    const getInitialState = useRef((gameMode: string) => {
         // Get random board, make initial board state object array
         const board = generateRandomBoard()
         const boardArray: any[] = []
@@ -122,11 +122,11 @@ export default function Page() {
         ))
 
         return initialState
-    }
+    })
     
     // States
     const [gameMode, setGameMode] = useState('numbers')
-    const [cards, setCards] = useState(getInitialState(gameMode))
+    const [cards, setCards] = useState(getInitialState.current(gameMode))
     const [flippedCards, setFlippedCards] = useState<number[]>([]);
     const [showModal, setShowModal] = useState(false)
     const [turns, setTurns] = useState(0)
@@ -136,13 +136,13 @@ export default function Page() {
 
     // Reset game
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
-    const handleResetGame = () => {
-        const newInitialState = getInitialState(gameMode)
+    const handleResetGame = useRef(() => {
+        const newInitialState = getInitialState.current(gameMode)
         setCards(newInitialState)
         setFlippedCards([])
         setTurns(0)
         setMatchedCardIds([])
-    }
+    })
 
     // Cycle game mode
     const cycleGameMode = () => {
@@ -201,8 +201,8 @@ export default function Page() {
     }, [flippedCards, cards]);
 
     useEffect(() => {
-        setCards(getInitialState(gameMode))
-        handleResetGame()
+        setCards(getInitialState.current(gameMode))
+        handleResetGame.current()
     }, [gameMode])
 
     const handleCardClick = (cardId: number) => {
@@ -231,7 +231,7 @@ export default function Page() {
     return (
         <>
             <div className='flex justify-around md:h-10 mt-4 md:w-full'>
-                <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
+                <button onClick={handleResetGame.current} className='py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
                 <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'>
                     {gameMode === 'numbers' 
                         ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
@@ -268,7 +268,7 @@ export default function Page() {
                 message={`Good job! You found all pairs in ${turns} turns! Do you want to play again?`}
                 onClose={() => {
                     setShowModal(false)
-                    handleResetGame()
+                    handleResetGame.current()
                 }}
             />
         </>

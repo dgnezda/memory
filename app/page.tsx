@@ -11,8 +11,8 @@ export default function Home() {
       {/* <Link href={"./dashboard/game"} className="text-white bg-gray-700 hover:bg-gray-500 rounded-lg m-10 p-10">PLAY</Link> */}
 
       <div className="md:my-20 my:10 grid grid-cols-4 grid-rows-4 items-center justify-center gap-5">
-        {squareArr.map((sqr, idx) => (
-          <div key={Date.now()} className="md:h-20 h-14 md:w-20 w-14 bg-gray-300"></div>
+        {squareArr.map((_sqr, index) => (
+          <div key={index} className="md:h-20 h-14 md:w-20 w-14 bg-gray-300"></div>
         ))}
       </div>
       <Link
