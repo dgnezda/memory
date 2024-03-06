@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
-import { Card } from '../../ui/card';
+import { Card } from '@/app/ui/Card';
 import { CardType } from '@/app/lib/definitions';
-import Modal from '@/app/ui/modal';
+import Modal from '@/app/ui/Modal';
 import { 
     // heroicons.dev
     MoonIcon, 
