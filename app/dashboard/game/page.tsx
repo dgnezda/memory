@@ -6,6 +6,7 @@ import { Card } from '../../ui/card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/modal';
 import { 
+    // heroicons.dev
     MoonIcon, 
     MusicalNoteIcon, 
     HomeIcon, 
@@ -121,8 +122,6 @@ export default function Page() {
         return initialState
     }
     
-    const cardSoundString = '/sounds/tap1.mp3'
-    
     // States
     const [gameMode, setGameMode] = useState('numbers')
     const [cards, setCards] = useState(getInitialState(gameMode))
@@ -131,12 +130,13 @@ export default function Page() {
     const [turns, setTurns] = useState(0)
     const [matchAnimation, setMatchAnimation] = useState<string | null>(null)
     const [matchedCardIds, setMatchedCardIds] = useState<number[]>([])
+    // Sounds
+    const cardSoundString = '/sounds/tap1.mp3'
     const [sound, setSound] = useState(cardSoundString)
     const [playWin] = useSound('/sounds/win.mp3')
     const [playMatch] = useSound('/sounds/coin1.mp3')
     const [playSetCards] = useSound('/sounds/cardFan2.mp3')
 
-    
     // Reset game
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
     const handleResetGame = () => {
@@ -168,12 +168,14 @@ export default function Page() {
                 playWin()
             }, 500)
         }
+
         // Check if there are exactly 2 flipped cards
         if (flippedCards.length === 2) {
             setSound('')
             const [card1Id, card2Id] = flippedCards;
             const card1 = cards.find(card => card.id === card1Id);
             const card2 = cards.find(card => card.id === card2Id);
+
             // Check if the two flipped cards have the same number
             if (card1 && card2 && card1.num === card2.num) {
                 // Matched pair: Keep cards visible, clear flipped cards
@@ -201,6 +203,7 @@ export default function Page() {
                 }, 1000); // Delay after a non-match (milliseconds)
                 
             }
+
             // Increment turns
             setTurns(prevTurns => prevTurns + 1)
         }
@@ -216,10 +219,12 @@ export default function Page() {
         if (flippedCards.includes(cardId) || flippedCards.length === 2) {
             return; // Ignore click if the card is already flipped
         }
+
         // If there are already 2 flipped cards, do nothing
         if (flippedCards.length === 2 || flippedCards.length > 1 && cards.find(card => card.visible)) {
             return;
         }
+
         // Toggle the visibility of the clicked card
         setCards(prevCards => {
             return prevCards.map(card => {
@@ -230,6 +235,7 @@ export default function Page() {
                 }
             });
         });
+        
         // Add the clicked card to the list of flipped cards
         setFlippedCards(prevFlippedCards => [...prevFlippedCards, cardId]);
     };
