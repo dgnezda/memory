@@ -1,4 +1,4 @@
-import TinyGrid from "@/app/ui/TinyGrid"
+import TinyGrid from "@/app/ui/tiny-grids"
 
 export default function Page() {
     return (
