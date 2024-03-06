@@ -3,7 +3,7 @@
 import useSound from 'use-sound';
 import { roboto } from "./fonts";
 
-export function Card({
+export default function Card({
     disabled,
     value,
     visible,
