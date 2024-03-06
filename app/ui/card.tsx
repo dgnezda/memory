@@ -32,13 +32,13 @@ export function Card({
                 onClick();
                 playClick();
             }} 
-            className={`${roboto.className}
+            className={`${roboto.className} grid-item
             border-white border-4 
             ${visible ? backgroundColor : `${flippedBackgroundColor} ${flippedHoverColor} md:hover:-translate-y-1`} 
             flex justify-center items-center md:h-40 h-20 w-20 md:w-40 rounded-xl py-6 px-6 shadow-md`}
         >
             <div className={typeof value === 'number' || 'letter'
-                    ? `${textColor} md:text-8xl text-6xl text-center`
+                    ? `${textColor} card-font text-center`
                     : `${textColor}`
                 }>
                 {visible ? value : ''}

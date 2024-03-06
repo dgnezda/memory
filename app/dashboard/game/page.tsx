@@ -240,8 +240,8 @@ export default function Page() {
                 </button>
                 <p className='py-2 px-4 bg-slate-50 rounded-xl'>Turns: {turns}</p>
             </div>
-            <div className='flex justify-center items-start mt-10 md:h-full'>    
-                <div className='grid grid-cols-4 md:gap-8 gap-5'>
+            <div className='flex container justify-center items-start md:mx-auto mx-1 mt-8 md:h-full'>    
+                <div className='grid grid-cols-4 md:gap-6 gap-3 justify-center'>
                     {cards.map(card => (
                     <Card 
                         value={card.value} 
@@ -255,8 +255,15 @@ export default function Page() {
                     />
                     ))}   
                 </div>
-                {matchAnimation === 'check' && <CheckIcon className='h-40 text-green-400 opacity-60 absolute md:top-96 top-[288px] left-auto'/>}
-                {matchAnimation === 'cross' && <XMarkIcon className='h-40 text-red-400 opacity-60 absolute md:top-96 top-[288px]  left-auto'/>}
+                {matchAnimation === 'check' 
+                    && <div className='flex justify-center items-center absolute top-4 md:left-auto w-full h-full'>
+                        <CheckIcon className='h-40 text-green-400 opacity-60 shadow-lg'/>
+                    </div>}
+                {matchAnimation === 'cross' 
+                    && <div className='flex justify-center items-center absolute top-4 md:left-auto w-full h-full'>
+                        <XMarkIcon className='h-40 text-red-400 opacity-60 shadow-lg'/>
+                    </div>}
+                    
             </div>
 
             <Modal

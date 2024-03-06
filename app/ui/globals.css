@@ -31,3 +31,31 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Define custom styles for the grid */
+.grid-item {
+  aspect-ratio: 1; /* Ensure square aspect ratio */
+  min-width: 80px;
+  max-width: 160px;
+  min-height: 80px;
+  max-height: 160px;
+}
+
+.card-font {
+  font-size: calc(2rem + 6vw);
+}
+
+/* Apply responsive styles using @media queries */
+@media (max-width: 640px) {
+  .grid-item {
+    width: calc((100vw - 4rem) / 4);
+    height: calc((100vw - 4rem) / 4);
+  }
+}
+
+@media (min-width: 640px) {
+  .grid-item {
+    width: 160px;
+    height: 160px;
+  }
+}
