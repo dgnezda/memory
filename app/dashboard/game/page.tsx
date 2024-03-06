@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
 import { Card } from '../../ui/card';
 import { CardType } from '@/app/lib/definitions';
@@ -42,6 +42,7 @@ import {
     XMarkIcon,
     ArrowPathIcon,
 } from '@heroicons/react/24/outline';
+import useSound from 'use-sound';
 
 export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-rose-400', 'bg-teal-400', 'bg-violet-400', 'bg-yellow-300', 'bg-cyan-300', 'bg-pink-400', 'bg-orange-300']
@@ -120,6 +121,8 @@ export default function Page() {
         return initialState
     }
     
+    const cardSoundString = '/sounds/tap1.mp3'
+    
     // States
     const [gameMode, setGameMode] = useState('numbers')
     const [cards, setCards] = useState(getInitialState(gameMode))
@@ -128,12 +131,17 @@ export default function Page() {
     const [turns, setTurns] = useState(0)
     const [matchAnimation, setMatchAnimation] = useState<string | null>(null)
     const [matchedCardIds, setMatchedCardIds] = useState<number[]>([])
-    const [sound, setSound] = useState('/sounds/cardPlace2.mp3')
+    const [sound, setSound] = useState(cardSoundString)
+    const [playWin] = useSound('/sounds/win.mp3')
+    const [playMatch] = useSound('/sounds/coin1.mp3')
+    const [playSetCards] = useSound('/sounds/cardFan2.mp3')
 
+    
     // Reset game
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
     const handleResetGame = () => {
         const newInitialState = getInitialState(gameMode)
+        playSetCards()
         setCards(newInitialState)
         setFlippedCards([])
         setTurns(0)
@@ -157,6 +165,7 @@ export default function Page() {
             // Show pop-up or modal
             setTimeout(() => {
                 setShowModal(true)
+                playWin()
             }, 500)
         }
         // Check if there are exactly 2 flipped cards
@@ -168,13 +177,14 @@ export default function Page() {
             // Check if the two flipped cards have the same number
             if (card1 && card2 && card1.num === card2.num) {
                 // Matched pair: Keep cards visible, clear flipped cards
+                playMatch()
                 setFlippedCards([]);
                 setMatchedCardIds(prevIds => [...prevIds, card1.id, card2.id])
                 setMatchAnimation('check');
                 setTimeout(() => {
                     setMatchAnimation(null)
                 }, 800)
-                setSound('/sounds/cardPlace2.mp3')
+                setSound(cardSoundString)
             } else {
                 // Unmatched pair: Flip cards back to non-visible after a delay
                 setMatchAnimation('cross');
@@ -187,7 +197,7 @@ export default function Page() {
                 ));
                 setFlippedCards([]);
                 setMatchAnimation(null)
-                setSound('/sounds/cardPlace2.mp3')
+                setSound(cardSoundString)
                 }, 1000); // Delay after a non-match (milliseconds)
                 
             }
@@ -257,11 +267,11 @@ export default function Page() {
                 </div>
                 {matchAnimation === 'check' 
                     && <div className='flex justify-center items-center absolute top-4 md:left-auto w-full h-full'>
-                        <CheckIcon className='h-40 text-green-400 opacity-60 shadow-lg'/>
+                        <CheckIcon className='h-40 text-green-400 opacity-60'/>
                     </div>}
                 {matchAnimation === 'cross' 
                     && <div className='flex justify-center items-center absolute top-4 md:left-auto w-full h-full'>
-                        <XMarkIcon className='h-40 text-red-400 opacity-60 shadow-lg'/>
+                        <XMarkIcon className='h-40 text-red-400 opacity-60'/>
                     </div>}
                     
             </div>
