@@ -272,14 +272,15 @@ export default function Page() {
                     ))}   
                 </div>
                 {matchAnimation === 'check' 
-                    && <div className='flex justify-center items-center absolute top-4 md:left-auto w-full h-full'>
+                    && <div className='check-cross'>
                         <CheckIcon className='h-40 text-green-400 opacity-60'/>
-                    </div>}
+                    </div>
+                }
                 {matchAnimation === 'cross' 
-                    && <div className='flex justify-center items-center absolute top-4 md:left-auto w-full h-full'>
+                    && <div className='check-cross'>
                         <XMarkIcon className='h-40 text-red-400 opacity-60'/>
-                    </div>}
-                    
+                    </div>
+                }   
             </div>
 
             <Modal
