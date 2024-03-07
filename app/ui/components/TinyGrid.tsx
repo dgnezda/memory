@@ -17,7 +17,7 @@ export default function TinyGrid({
     };
 
     return (
-        <div className="grid" style={customGridStyles}>
+        <div className="grid m-2" style={customGridStyles}>
             {divsArray}
         </div>
     )

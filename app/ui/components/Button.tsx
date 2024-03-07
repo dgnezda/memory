@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react'
-import { cn } from '../lib/utils'
+import { cn } from '../../lib/utils'
 
 const Button = ({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (

@@ -1,7 +1,7 @@
 // 'use client';
 
 import useSound from 'use-sound';
-import { roboto } from "./fonts";
+import { roboto } from "../fonts";
 
 export default function Card({
     disabled,

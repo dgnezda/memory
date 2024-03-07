@@ -1,30 +1,54 @@
-import TinyGrid from "@/app/ui/tiny-grids"
+import ColorSwash from "@/app/ui/components/ColorSwash"
+import WhiteDiv from "@/app/ui/components/WhiteDiv"
+import TinyGrid from "@/app/ui/components/TinyGrid"
+import { SpeakerWaveIcon, SpeakerXMarkIcon } from "@heroicons/react/24/outline"
 
 export default function Page() {
     return (
         <div className="md:ml-0 ml-3 md:mr-0 mr-1">
             <div className="text-xl bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Settings</div>
-            <div className="bg-white rounded-lg mt-2 mr-2 p-4">
-                <div className="text-l">Board size:</div>
-                <div className="text-sm mt-1">
+            <WhiteDiv value="Board size">
+                <div className="flex flex-row items-end text-sm mt-1">
                     <label>
                         <TinyGrid rows={4} columns={4} />
-                        <input type="radio" name="myRadio" value="44" />
+                        <input className="m-2" type="radio" name="boardSize" value="44" />
                         4x4
                     </label>
                     <label>
                         <TinyGrid rows={5} columns={4} />
-                        <input type="radio" name="myRadio" value="54" />
+                        <input className="m-2" type="radio" name="boardSize" value="54" />
                         5x4
                         <br></br>
                     </label>
                     <label>
                         <TinyGrid rows={6} columns={6} />
-                        <input type="radio" name="myRadio" value="66" />
+                        <input className="m-2" type="radio" name="boardSize" value="66" />
                         6x6
                     </label>
                 </div>
-            </div>
+            </WhiteDiv>
+            <WhiteDiv className="h-24" value="Card back color scheme">
+                <div className="flex flex-row items-start h-4">
+                    <ColorSwash className="bg-gradient-to-r from-purple-400 to-cyan-200 hover:from-purple-300 hover:to-cyan-100" />
+                    <ColorSwash className="bg-gradient-to-r from-indigo-400 to-sky-200 hover:from-indigo-300 hover:to-sky-100" />
+                    <ColorSwash className="bg-gradient-to-r from-rose-400 to-pink-200 hover:from-rose-300 hover:to-pink-100" />
+                    <ColorSwash className="bg-gradient-to-r from-emerald-500 to-lime-200 hover:from-emerald-300 hover:to-lime-100" />
+                </div>
+            </WhiteDiv>
+            <WhiteDiv className="h-32" value="Sound">
+                <div className="flex flex-row">
+                    <label>
+                        <SpeakerWaveIcon className="h-7 mt-2 ml-1" />
+                        <input className="mt-2 m-2" type="radio" name="sound" value="On" />
+                       
+                    </label>
+                    <label>
+                        <SpeakerXMarkIcon className="h-7 mt-2 ml-5" />
+                        <input className="mt-2 ml-6" type="radio" name="sound" value="Off" />
+                        
+                    </label>
+                </div>
+            </WhiteDiv>
         </div>
     )
 }
