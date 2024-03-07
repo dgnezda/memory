@@ -27,12 +27,20 @@ export default function Page() {
             </WhiteDiv>
             <WhiteDiv value="Best Time">
                 <div className="text-xs mt-2">
-                    1:23
+                    <div>Overall: 1:05</div>
+                    <div>Game mode numbers: 1:05</div>
+                    <div>Game mode letters: 1:40</div>
+                    <div>Game mode symbols: 1:53</div>
+                    <div>Game mode arrows: 2:07</div>
                 </div>
             </WhiteDiv>
             <WhiteDiv value="Average Time">
                 <div className="text-xs mt-2">
-                    2:56
+                    <div>Overall: 1:50</div>
+                    <div>Game mode numbers: 1:35</div>
+                    <div>Game mode letters: 1:41</div>
+                    <div>Game mode symbols: 1:59</div>
+                    <div>Game mode arrows: 2:37</div>
                 </div>
             </WhiteDiv>
         </div>

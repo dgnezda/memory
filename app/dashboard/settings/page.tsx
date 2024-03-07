@@ -2,11 +2,12 @@ import ColorSwash from "@/app/ui/components/ColorSwash"
 import WhiteDiv from "@/app/ui/components/WhiteDiv"
 import TinyGrid from "@/app/ui/components/TinyGrid"
 import { SpeakerWaveIcon, SpeakerXMarkIcon } from "@heroicons/react/24/outline"
+import Button from "@/app/ui/components/Button"
 
 export default function Page() {
     return (
         <div className="md:ml-0 ml-3 md:mr-0 mr-1">
-            <div className="text-xl bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Settings</div>
+            <div className="text-xl bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Game Settings</div>
             <WhiteDiv value="Board size">
                 <div className="flex flex-row items-end text-sm mt-1">
                     <label>
@@ -47,6 +48,14 @@ export default function Page() {
                         <input className="mt-2 ml-6" type="radio" name="sound" value="Off" />
                         
                     </label>
+                </div>
+            </WhiteDiv>
+            <div className="text-xl bg-white rounded-lg mt-4 mr-2 p-4">Profile Settings</div>
+            <WhiteDiv value="Change Password" className="h-48">
+                <div className="flex flex-col mt-2">
+                    <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2" />
+                    <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2" />
+                    <Button className="bg-blue-400 hover:bg-blue-500 mt-2">Save New Password</Button>
                 </div>
             </WhiteDiv>
         </div>
