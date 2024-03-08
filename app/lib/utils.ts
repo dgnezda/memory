@@ -64,6 +64,6 @@ export function calculateFinalScore(moves: number, timeTenths: number): number {
 
   // Convert final score to a 0-100 scale
   const scaledScore: number = Math.round(finalScore * 100);
-
-  return scaledScore;
+  if (scaledScore > 0) return scaledScore
+  return 0;
 }
