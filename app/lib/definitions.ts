@@ -4,7 +4,7 @@ export type User = {
     email: string;
     password: string;
     games_played: number;
-    scores: number[];
+    scores: Score[];
   };
 
 export type CardType = {
@@ -19,5 +19,7 @@ export type Score = {
   name: string;
   score: string | number;
   date: string;
+  user: User;
+  time: number | string;
 }
 

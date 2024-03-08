@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
+import { formatTime, generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
 import Card from '@/app/ui/components/Card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/components/Modal';
@@ -130,6 +130,8 @@ export default function Page() {
     const [turns, setTurns] = useState(0)
     const [matchAnimation, setMatchAnimation] = useState<string | null>(null)
     const [matchedCardIds, setMatchedCardIds] = useState<number[]>([])
+    const [startTime, setStartTime] = useState<number | null>(null);
+    const [timer, setTimer] = useState<number>(0);
     // Sounds
     const cardSoundString = '/sounds/tap1.mp3'
     const [sound, setSound] = useState(cardSoundString)
@@ -146,6 +148,8 @@ export default function Page() {
         setFlippedCards([])
         setTurns(0)
         setMatchedCardIds([])
+        setStartTime(null)
+        setTimer(0)
     }
 
     // Cycle game mode
@@ -210,11 +214,25 @@ export default function Page() {
     }, [flippedCards, cards]);
 
     useEffect(() => {
+        if (startTime && matchedCardIds.length < cards.length) {
+          const interval = setInterval(() => {
+            const elapsedTime = (Date.now() - startTime) / 1000;
+            setTimer(elapsedTime);
+          }, 100);
+          return () => clearInterval(interval);
+        }
+      }, [startTime, matchedCardIds]);
+
+    useEffect(() => {
         setCards(getInitialState(gameMode))
         handleResetGame()
     }, [gameMode])
 
     const handleCardClick = (cardId: number) => {
+        // If start time is not set, start it (the first card was clicked, start the timer)
+        if (!startTime) {
+            setStartTime(Date.now());
+          }
         // Check if the clicked card is already flipped
         if (flippedCards.includes(cardId) || flippedCards.length === 2) {
             return; // Ignore click if the card is already flipped
@@ -254,7 +272,7 @@ export default function Page() {
                                 : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
                     }
                 </button>
-                <p className='py-2 px-4 bg-slate-50 rounded-xl'>Turns: {turns}</p>
+                <p className='py-2 px-4 bg-slate-50 rounded-xl w-[208px]'>Moves: {turns} Time: {formatTime(timer)}</p>
             </div>
             <div className='flex container justify-center items-start md:mx-auto mx-1 mt-8 md:h-full'>    
                 <div className='grid grid-cols-4 md:gap-6 gap-3 justify-center'>
@@ -285,7 +303,7 @@ export default function Page() {
 
             <Modal
                 isOpen={showModal}
-                message={`Good job! You found all pairs in ${turns} turns! Do you want to play again?`}
+                message={`Good job! You found all pairs in ${turns} turns! \nTime to complete: ${formatTime(timer)}. Do you want to play again?`}
                 onClose={() => {
                     setShowModal(false)
                     handleResetGame()
