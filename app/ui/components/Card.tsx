@@ -36,7 +36,7 @@ export default function Card({
                 playClick();
             }} 
             className={`${roboto.className} grid-item
-            border-white border-4 
+            border-white border-4 border-dashed
             ${visible ? backgroundColor : `${flippedBackgroundColor} ${flippedHoverColor} md:hover:-translate-y-1`} 
             flex justify-center items-center md:h-40 h-20 w-20 md:w-40 rounded-xl py-6 px-6 shadow-md`}
         >

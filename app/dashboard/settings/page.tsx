@@ -48,7 +48,7 @@ export default function Page() {
             <WhiteDiv className="h-24" value="Card back color scheme">
                 <div className="flex flex-row items-start h-4">
                     {cardColors.map((color, index) => (
-                        <ColorSwash className={`${color} ${cardHoverColors[index]}`} />
+                        <ColorSwash key={index} className={`${color} ${cardHoverColors[index]}`} />
                     ))}
                 </div>
             </WhiteDiv>
