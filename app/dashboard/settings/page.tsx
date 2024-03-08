@@ -6,7 +6,7 @@ import Button from "@/app/ui/components/Button"
 
 export default function Page() {
     return (
-        <div className="grid grid-cols-2 md:ml-0 ml-3 md:mr-0 mr-1">
+        <div className="md:grid md:grid-cols-2 md:ml-0 ml-3 md:mr-0 mr-1">
             <div className="text-xl col-span-2 bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Game Settings</div>
             <WhiteDiv value="Board size">
                 <div className="flex flex-row items-end text-sm mt-1">
@@ -67,7 +67,7 @@ export default function Page() {
             </div>
             </WhiteDiv>
             <div className="text-xl col-span-2 bg-white rounded-lg mt-4 mr-2 p-4">Profile Settings</div>
-            <div className="flex flex-row w-full">
+            <div className="md:flex md:flex-row w-full">
                 <WhiteDiv value="Change Password" className="h-48">
                     <div className="flex flex-col mt-2 justify-center items-center">
                         <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2 w-60" />
