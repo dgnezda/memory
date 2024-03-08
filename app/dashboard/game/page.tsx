@@ -7,6 +7,7 @@ import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/components/Modal';
 import { 
     // heroicons.dev
+    ClockIcon,
     MoonIcon, 
     MusicalNoteIcon, 
     HomeIcon, 
@@ -39,6 +40,7 @@ import {
     ArrowUturnLeftIcon,
     ArrowUturnRightIcon,
     ArrowUturnUpIcon,
+    ChevronDoubleRightIcon,
     CheckIcon,
     XMarkIcon,
     ArrowPathIcon,
@@ -272,7 +274,16 @@ export default function Page() {
                                 : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
                     }
                 </button>
-                <p className='py-2 px-4 bg-slate-50 rounded-xl w-[208px]'>Moves: {turns} Time: {formatTime(timer)}</p>
+                <div className='py-2 bg-slate-50 rounded-xl w-[140px] grid grid-cols-3 items-center'>
+                    <div className='span-1 flex items-center'>
+                        <div className='flex justify-center pl-2'><ChevronDoubleRightIcon className='h-5' /></div>
+                        <div className='pl-1'>{turns}</div> 
+                    </div>
+                    <div className='span-2 flex items-center'>
+                    <div className='flex justify-center pl-3'><ClockIcon className='h-5' /> </div>
+                    <div className='flex justify-center pl-1'>{formatTime(timer)}</div>
+                    </div>
+                </div>
             </div>
             <div className='flex container justify-center items-start md:mx-auto mx-1 mt-8 md:h-full'>    
                 <div className='grid grid-cols-4 md:gap-6 gap-3 justify-center'>
@@ -303,7 +314,7 @@ export default function Page() {
 
             <Modal
                 isOpen={showModal}
-                message={`Good job! You found all pairs in ${turns} turns! \nTime to complete: ${formatTime(timer)}. Do you want to play again?`}
+                message={`Good job! You found all pairs in ${turns} turns! \nTime to complete: ${formatTime(timer)}s. Do you want to play again?`}
                 onClose={() => {
                     setShowModal(false)
                     handleResetGame()
