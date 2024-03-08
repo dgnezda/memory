@@ -51,13 +51,20 @@ export default function Page() {
                 </div>
             </WhiteDiv>
             <div className="text-xl bg-white rounded-lg mt-4 mr-2 p-4">Profile Settings</div>
-            <WhiteDiv value="Change Password" className="h-48">
-                <div className="flex flex-col mt-2">
-                    <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2" />
-                    <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2" />
-                    <Button className="bg-blue-400 hover:bg-blue-500 mt-2">Save New Password</Button>
-                </div>
-            </WhiteDiv>
+            <div className="flex flex-row w-full">
+                <WhiteDiv value="Change Password" className="h-48">
+                    <div className="flex flex-col mt-2 justify-center items-center">
+                        <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2 w-60" />
+                        <input type="password" className="border-solid rounded-lg border-[1px] p-1 mt-2 w-60" />
+                        <Button className="bg-blue-400 hover:bg-blue-500 mt-2 w-60">Save New Password</Button>
+                    </div>
+                </WhiteDiv>
+                <WhiteDiv value="Reset Stats">
+                    <div className="flex justify-center items-start">
+                        <Button className="bg-blue-400 hover:bg-blue-500 self-center mt-4 w-60">Reset Stats</Button>
+                    </div>
+                </WhiteDiv>
+            </div>
         </div>
     )
 }

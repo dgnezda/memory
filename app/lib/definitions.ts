@@ -21,14 +21,3 @@ export type Score = {
   date: string;
 }
 
-export type HighScoreTable = {
-  id: string;
-  name: string;
-  score: string | number;
-  date: string;
-}
-
-export type UserSettings = {
-  mode: 'dark' | 'light'
-  // TODO:...back style, front style, front symbol/num, acccessibility/color/b&w..
-}
