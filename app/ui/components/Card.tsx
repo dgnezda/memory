@@ -2,6 +2,7 @@
 
 import useSound from 'use-sound';
 import { roboto } from "../fonts";
+import { cardColors } from '../colors';
 
 export default function Card({
     disabled,
@@ -11,6 +12,7 @@ export default function Card({
     textColor,
     onClick,
     sound,
+    back,
 }: {
     disabled: boolean;
     value: number | any;
@@ -19,8 +21,9 @@ export default function Card({
     textColor: string;
     onClick: () => void;
     sound: string
+    back: number
 }) {
-    const flippedBackgroundColor = 'bg-gradient-to-r from-purple-400 to-cyan-200'
+    const flippedBackgroundColor = cardColors[back]
     const flippedHoverColor = 'hover:bg-gradient-to-l'
 
     const [playClick] = useSound(sound)

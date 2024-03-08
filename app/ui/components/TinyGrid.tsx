@@ -8,7 +8,7 @@ export default function TinyGrid({
 }) {
     const divsArray: JSX.Element[] = []
     for (let i = 0; i < rows*columns; i++) {
-        divsArray.push(<div key={Date.now()} className="bg-slate-500 justify-start items-start h-2 w-2 m-[1px]"></div>)
+        divsArray.push(<div key={Date.now()} className="bg-slate-500 justify-start items-start h-2 w-2 m-[1px] rounded-sm"></div>)
     }
     const customGridStyles = {
         gridTemplateColumns: `repeat(${columns}, 10px)`,

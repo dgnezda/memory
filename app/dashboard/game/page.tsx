@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { formatTime, generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
+import { calculateFinalScore, formatTime, generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
 import Card from '@/app/ui/components/Card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/components/Modal';
@@ -127,6 +127,7 @@ export default function Page() {
     // States
     const [gameMode, setGameMode] = useState('numbers')
     const [cards, setCards] = useState(getInitialState(gameMode))
+    const [cardBack, setCardBack] = useState(0)
     const [flippedCards, setFlippedCards] = useState<number[]>([]);
     const [showModal, setShowModal] = useState(false)
     const [turns, setTurns] = useState(0)
@@ -134,6 +135,7 @@ export default function Page() {
     const [matchedCardIds, setMatchedCardIds] = useState<number[]>([])
     const [startTime, setStartTime] = useState<number | null>(null);
     const [timer, setTimer] = useState<number>(0);
+    const [gameScore, setGameScore] = useState<number | null>(null)
     // Sounds
     const cardSoundString = '/sounds/tap1.mp3'
     const [sound, setSound] = useState(cardSoundString)
@@ -152,6 +154,7 @@ export default function Page() {
         setMatchedCardIds([])
         setStartTime(null)
         setTimer(0)
+        setGameScore(null)
     }
 
     // Cycle game mode
@@ -169,6 +172,7 @@ export default function Page() {
         if (cards.every(card => card.visible)) {
             // All cards are flipped
             // Show pop-up or modal
+            setGameScore(calculateFinalScore(timer, turns))
             setTimeout(() => {
                 setShowModal(true)
                 playWin()
@@ -297,6 +301,7 @@ export default function Page() {
                         disabled={matchedCardIds.includes(card.id)}
                         onClick={() => handleCardClick(card.id)}
                         sound={sound}
+                        back={cardBack}
                     />
                     ))}   
                 </div>
@@ -314,7 +319,7 @@ export default function Page() {
 
             <Modal
                 isOpen={showModal}
-                message={`Good job! You found all pairs in ${turns} turns! \nTime to complete: ${formatTime(timer)}s. Do you want to play again?`}
+                message={`Good job! You found all pairs in ${turns} turns! \nTime to complete: ${formatTime(timer)}s. Your score: ${gameScore}.`}
                 onClose={() => {
                     setShowModal(false)
                     handleResetGame()

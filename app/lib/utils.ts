@@ -50,14 +50,20 @@ export const formatTime = (time: number): string => {
   }
 };
 
-// export const formatEndTime = (time: number): string => {
-//   const minutes = Math.floor(time / 60);
-//   const seconds = time % 60;
-//   const milliseconds = Math.floor((time % 1) * 1000);
+export function calculateFinalScore(moves: number, timeTenths: number): number {
+  // Define weight for moves and time
+  const weightMoves: number = 0.5; // Adjust this weight as needed
+  const weightTime: number = 0.5; // Adjust this weight as needed
 
-//   if (minutes === 0) {
-//     return `${seconds}s${milliseconds < 100 ? '0' : ''}${milliseconds}ms`;
-//   } else {
-//     return `${minutes}m${seconds < 10 ? '0' : ''}${seconds}s${milliseconds < 100 ? '0' : ''}${milliseconds}ms`;
-//   }
-// };
+  // Normalize the number of moves and time
+  const normalizedMoves: number = (moves - 8) / (45 - 8);
+  const normalizedTime: number = (timeTenths / 10 - 21) / (110 - 21); // Adjust maximum time as needed
+
+  // Calculate final score
+  const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
+
+  // Convert final score to a 0-100 scale
+  const scaledScore: number = Math.round(finalScore * 100);
+
+  return scaledScore;
+}
