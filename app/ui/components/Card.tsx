@@ -13,6 +13,7 @@ export default function Card({
     onClick,
     sound,
     back,
+    isAnimating,
 }: {
     disabled: boolean;
     value: number | any;
@@ -20,12 +21,13 @@ export default function Card({
     backgroundColor: string;
     textColor: string;
     onClick: () => void;
-    sound: string
-    back: number
+    sound: string;
+    back: number;
+    isAnimating: boolean;
 }) {
     const flippedBackgroundColor = cardColors[back]
     const flippedHoverColor = 'hover:bg-gradient-to-l'
-
+    
     const [playClick] = useSound(sound)
 
     return (
@@ -37,8 +39,12 @@ export default function Card({
             }} 
             className={`${roboto.className} grid-item border-white flex justify-center items-center md:h-40 h-20 w-20 md:w-40 rounded-xl py-6 px-6 shadow-md
             ${visible 
-                ? `${backgroundColor} border-8 border-double` 
-                : `${flippedBackgroundColor} ${flippedHoverColor} border-4 md:hover:-translate-y-1`} 
+                ? `${backgroundColor} border-8 border-double ` 
+                : `${flippedBackgroundColor} ${flippedHoverColor} border-4 md:hover:-translate-y-1 `}
+            ${isAnimating 
+                ? `flip-card`
+                : ''
+            }
             `}
         >
             <div className={typeof value === 'number' || 'letter'

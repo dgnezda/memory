@@ -136,6 +136,7 @@ export default function Page() {
     const [startTime, setStartTime] = useState<number | null>(null);
     const [timer, setTimer] = useState<number>(0);
     const [gameScore, setGameScore] = useState<number | null>(null)
+    const [isCardAnimating, setIsCardAnimating] = useState(false)
     // Sounds
     const cardSoundString = '/sounds/tap1.mp3'
     const [sound, setSound] = useState(cardSoundString)
@@ -155,6 +156,10 @@ export default function Page() {
         setStartTime(null)
         setTimer(0)
         setGameScore(null)
+        setIsCardAnimating(true)
+        setTimeout(() => {
+            setIsCardAnimating(false)
+        }, 200)
     }
 
     // Cycle game mode
@@ -238,11 +243,13 @@ export default function Page() {
         // If start time is not set, start it (the first card was clicked, start the timer)
         if (!startTime) {
             setStartTime(Date.now());
-          }
+        }
         // Check if the clicked card is already flipped
         if (flippedCards.includes(cardId) || flippedCards.length === 2) {
             return; // Ignore click if the card is already flipped
         }
+
+        // If card not flipped, play flip animation
 
         // If there are already 2 flipped cards, do nothing
         if (flippedCards.length === 2 || flippedCards.length > 1 && cards.find(card => card.visible)) {
@@ -302,6 +309,7 @@ export default function Page() {
                         onClick={() => handleCardClick(card.id)}
                         sound={sound}
                         back={cardBack}
+                        isAnimating={isCardAnimating}
                     />
                     ))}   
                 </div>
