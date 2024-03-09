@@ -7,7 +7,7 @@ import { cardColors, cardHoverColors, mainColors } from "@/app/ui/colors"
 
 export default function Page() {
     return (
-        <div className="md:grid md:grid-cols-2 md:ml-0 ml-3 md:mr-0 mr-1">
+        <div className="md:grid md:grid-cols-2 md:ml-1 ml-3 md:mr-0 mr-1">
             <div className="text-xl col-span-2 bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Game Settings</div>
             <WhiteDiv value="Board size">
                 <div className="flex flex-row items-end text-sm mt-1">
@@ -30,22 +30,22 @@ export default function Page() {
                 </div>
             </WhiteDiv>
 
-            <WhiteDiv className="h-44" value="Sound">
+            <WhiteDiv className="md:h-44 sm:h-32" value="Sound">
                 <div className="flex flex-row">
                     <label>
-                        <SpeakerWaveIcon className="h-10 mt-8 ml-1" />
+                        <SpeakerWaveIcon className="h-10 md:mt-8 sm:mt-2 ml-1" />
                         <input className="mt-2 m-2" type="radio" name="sound" value="On" />
                         On
                     </label>
                     <label>
-                        <SpeakerXMarkIcon className="h-10 mt-8 ml-5" />
+                        <SpeakerXMarkIcon className="h-10 md:mt-8 sm:mt-2 ml-5" />
                         <input className="mt-2 ml-5 mr-2" type="radio" name="sound" value="Off" />
                         Off
                     </label>
                 </div>
             </WhiteDiv>
             
-            <WhiteDiv className="h-24" value="Card back color scheme">
+            <WhiteDiv className="h-24" value="Card back color">
                 <div className="flex flex-row items-start h-4">
                     {cardColors.map((color, index) => (
                         <ColorSwash key={index} className={`${color} ${cardHoverColors[index]}`} />
@@ -67,20 +67,21 @@ export default function Page() {
             </div>
             </WhiteDiv>
             <div className="text-xl col-span-2 bg-white rounded-lg mt-4 mr-2 p-4">Profile Settings</div>
-            <div className="md:flex md:flex-row w-full">
-                <WhiteDiv value="Change Password" className="h-48">
-                    <div className="flex flex-col mt-2 justify-center items-center">
-                        <input type="password" placeholder={"Enter new password"} className="border-solid rounded-lg border-[1px] p-1 mt-2 w-60" />
-                        <input type="password" placeholder={"Confirm new password"} className="border-solid rounded-lg border-[1px] p-1 mt-2 w-60" />
-                        <Button className={`${mainColors.main} ${mainColors.hover} mt-2 w-60`}>Save New Password</Button>
-                    </div>
-                </WhiteDiv>
-                <WhiteDiv value="Reset Stats">
-                    <div className="flex justify-center items-start">
-                        <Button className={`${mainColors.main} ${mainColors.hover} self-center mt-4 w-60`}>Reset Stats</Button>
-                    </div>
-                </WhiteDiv>
-            </div>
+            
+            <WhiteDiv value="Change Password" className="h-52">
+                <div className="flex flex-col mt-2 justify-center items-center">
+                    <input type="password" placeholder={"Enter new password"} className="border-solid rounded-lg border-[1px] p-1 my-2 w-60 text-sm" />
+                    <input type="password" placeholder={"Confirm new password"} className="border-solid rounded-lg border-[1px] p-1 my-2 w-60 text-sm" />
+                    <Button className={`${mainColors.main} ${mainColors.hover} mt-2 w-60`}>Save New Password</Button>
+                </div>
+            </WhiteDiv>
+            <WhiteDiv value="ResetGameStats" className="mb-2 flex flex-col justify-between h-52">
+                <div className="flex flex-col justify-center items-center">
+                    <div className="text-sm">Reset game statistics. This will delete all game scores, number of games played, average scores for every game etc. - everything.</div>
+                    <Button className={`${mainColors.main} ${mainColors.hover} self-center mt-4 w-60`}>Reset Stats</Button>
+                </div>
+            </WhiteDiv>
+            <WhiteDiv className="md:col-span-2"></WhiteDiv>
         </div>
     )
 }

@@ -35,10 +35,11 @@ export default function Card({
                 onClick();
                 playClick();
             }} 
-            className={`${roboto.className} grid-item
-            border-white
-            ${visible ? `${backgroundColor} border-8 border-double` : `${flippedBackgroundColor} ${flippedHoverColor} border-4 md:hover:-translate-y-1`} 
-            flex justify-center items-center md:h-40 h-20 w-20 md:w-40 rounded-xl py-6 px-6 shadow-md`}
+            className={`${roboto.className} grid-item border-white flex justify-center items-center md:h-40 h-20 w-20 md:w-40 rounded-xl py-6 px-6 shadow-md
+            ${visible 
+                ? `${backgroundColor} border-8 border-double` 
+                : `${flippedBackgroundColor} ${flippedHoverColor} border-4 md:hover:-translate-y-1`} 
+            `}
         >
             <div className={typeof value === 'number' || 'letter'
                     ? `${textColor} card-font text-center`

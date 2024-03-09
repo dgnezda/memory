@@ -63,7 +63,7 @@ export function calculateFinalScore(moves: number, timeTenths: number): number {
   const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
 
   // Convert final score to a 0-100 scale
-  const scaledScore: number = Math.round(finalScore * 100);
+  const scaledScore: number = Math.round(finalScore * 1000);
   if (scaledScore > 0) return scaledScore
-  return 0;
+  return 1;
 }
