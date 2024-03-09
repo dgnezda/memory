@@ -274,8 +274,8 @@ export default function Page() {
     return (
         <>
             <div className='flex justify-around md:h-10 mt-4 md:w-full'>
-                <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
-                <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-sky-100 hover:text-slate-700 rounded-xl'>
+                <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
+                <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'>
                     {gameMode === 'numbers' 
                         ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
                         : gameMode === 'letters' 
