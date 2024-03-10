@@ -2,7 +2,7 @@
 
 import {
   ChartPieIcon,
-  HomeIcon,
+  InformationCircleIcon,
   PuzzlePieceIcon,
   CogIcon
 } from '@heroicons/react/24/outline';
@@ -18,6 +18,7 @@ const links = [
   { name: 'Game', href: '/dashboard/game', icon: PuzzlePieceIcon },
   { name: 'Stats', href: '/dashboard/stats', icon: ChartPieIcon },
   { name: 'Settings', href: '/dashboard/settings', icon: CogIcon },
+  { name: 'About', href: '/dashboard/about', icon: InformationCircleIcon},
 ];
 
 export default function NavLinks() {

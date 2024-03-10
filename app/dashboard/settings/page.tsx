@@ -75,7 +75,7 @@ export default function Page() {
                     <Button className={`${mainColors.main} ${mainColors.hover} mt-2 w-60`}>Save New Password</Button>
                 </div>
             </WhiteDiv>
-            <WhiteDiv value="ResetGameStats" className="mb-2 flex flex-col justify-between h-52">
+            <WhiteDiv value="Reset Game Stats" className="mb-2 flex flex-col justify-between h-52">
                 <div className="flex flex-col justify-center items-center">
                     <div className="text-sm">Reset game statistics. This will delete all game scores, number of games played, average scores for every game etc. - everything.</div>
                     <Button className={`${mainColors.main} ${mainColors.hover} self-center mt-4 w-60`}>Reset Stats</Button>

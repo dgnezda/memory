@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { calculateFinalScore, formatTime, generateRandomBoard, getRandomCardFaces } from '../../lib/utils';
+import { calculateFinalScore, formatTime, generateRandomBoard, getRandomCardFaces, getWinMessage } from '../../lib/utils';
 import Card from '@/app/ui/components/Card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/components/Modal';
@@ -324,10 +324,15 @@ export default function Page() {
                     </div>
                 }   
             </div>
-
+            <div className='absolute bottom-1 text-xs text-gray-400'>Website design and app by Domen Gnezda</div>
             <Modal
                 isOpen={showModal}
-                message={`Good job! You found all pairs in ${turns} turns! \nTime to complete: ${formatTime(timer)}s. Your score: ${gameScore}.`}
+                message={`
+                    ${getWinMessage()}
+
+                    Number of turns: ${turns}
+                    Time: ${formatTime(timer)}s
+                    Score: ${gameScore}`}
                 onClose={() => {
                     setShowModal(false)
                     handleResetGame()

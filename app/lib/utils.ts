@@ -67,3 +67,22 @@ export function calculateFinalScore(moves: number, timeTenths: number): number {
   if (scaledScore > 0) return scaledScore
   return 1;
 }
+
+export function getWinMessage(): string {
+  const winMessages = [
+    'Splendid effort! You have impeccably discerned and paired all the cards with utmost finesse.',
+    'Ah, top job, mate! You\'ve only gone and matched all them cards like a proper legend! Cheers to you, pal!',
+    'Excellent work! You have successfully identified and matched all pairs of cards.',
+    'Arrr, ye\'ve plundered the treasure of matches, me hearty! A fine haul indeed, savvy?',
+    'Yay! You did it! You found all the cards that are like the card before the one you found and are the same! Good job!',
+    'All pairs of cards, matched you have. Well done, young padawan!',
+    'Fascinating. You have efficiently identified and matched all pairs of cards. Logical conclusion, indeed.',
+    'Congratulations, for you have found all the matches among the cards, as I have foreseen.',
+    'You\'ve found all the matches, my friend. Consider it a favor from me to you.',
+    'Hail, seeker of matches! You\'ve traversed the labyrinth of cards and emerged triumphant. A wizardry of the mind, indeed!',
+    'Elementary, my dear Watson. You\'ve successfully deduced and matched all pairs of cards.'
+  ]
+  const randomIndex: number = Math.floor(Math.random() * winMessages.length);
+
+  return winMessages[randomIndex];
+}
