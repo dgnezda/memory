@@ -137,6 +137,7 @@ export default function Page() {
     const [timer, setTimer] = useState<number>(0);
     const [gameScore, setGameScore] = useState<number | null>(null)
     const [isCardAnimating, setIsCardAnimating] = useState(false)
+    const [winMessage, setWinMessage] = useState('')
     // Sounds
     const cardSoundString = '/sounds/tap1.mp3'
     const [sound, setSound] = useState(cardSoundString)
@@ -160,6 +161,7 @@ export default function Page() {
         setTimeout(() => {
             setIsCardAnimating(false)
         }, 200)
+        setWinMessage('')
     }
 
     // Cycle game mode
@@ -177,6 +179,7 @@ export default function Page() {
         if (cards.every(card => card.visible)) {
             // All cards are flipped
             // Show pop-up or modal
+            setWinMessage(getWinMessage())
             setGameScore(calculateFinalScore(timer, turns))
             setTimeout(() => {
                 setShowModal(true)
@@ -248,8 +251,6 @@ export default function Page() {
         if (flippedCards.includes(cardId) || flippedCards.length === 2) {
             return; // Ignore click if the card is already flipped
         }
-
-        // If card not flipped, play flip animation
 
         // If there are already 2 flipped cards, do nothing
         if (flippedCards.length === 2 || flippedCards.length > 1 && cards.find(card => card.visible)) {
@@ -328,7 +329,7 @@ export default function Page() {
             <Modal
                 isOpen={showModal}
                 message={`
-                    ${getWinMessage()}
+                    ${winMessage}
 
                     Number of turns: ${turns}
                     Time: ${formatTime(timer)}s
