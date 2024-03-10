@@ -46,6 +46,7 @@ import {
     ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 import useSound from 'use-sound';
+import Author from '@/app/ui/components/Author';
 
 export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-rose-400', 'bg-teal-400', 'bg-violet-400', 'bg-yellow-300', 'bg-cyan-300', 'bg-pink-400', 'bg-orange-300']
@@ -325,7 +326,7 @@ export default function Page() {
                     </div>
                 }   
             </div>
-            <div className='absolute bottom-1 text-xs text-gray-400'>Website design and app by Domen Gnezda</div>
+            <Author />
             <Modal
                 isOpen={showModal}
                 message={`

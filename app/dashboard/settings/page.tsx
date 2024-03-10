@@ -4,11 +4,13 @@ import TinyGrid from "@/app/ui/components/TinyGrid"
 import { SpeakerWaveIcon, SpeakerXMarkIcon, ClockIcon } from "@heroicons/react/24/outline"
 import Button from "@/app/ui/components/Button"
 import { cardColors, cardHoverColors, mainColors } from "@/app/ui/colors"
+import Title from "@/app/ui/components/Title"
+import Author from "@/app/ui/components/Author"
 
 export default function Page() {
     return (
         <div className="md:grid md:grid-cols-2 md:ml-1 ml-3 md:mr-0 mr-1">
-            <div className="text-xl col-span-2 bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Game Settings</div>
+            <Title>Game Settings</Title>
             <WhiteDiv value="Board size">
                 <div className="flex flex-row items-end text-sm mt-1">
                     <label>
@@ -82,6 +84,8 @@ export default function Page() {
                 </div>
             </WhiteDiv>
             <WhiteDiv className="md:col-span-2"></WhiteDiv>
+
+            <Author />
         </div>
     )
 }

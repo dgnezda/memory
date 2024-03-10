@@ -1,9 +1,11 @@
+import Author from "@/app/ui/components/Author";
+import Title from "@/app/ui/components/Title";
 import WhiteDiv from "@/app/ui/components/WhiteDiv";
 
 export default function Page() {
     return (
         <div className="md:ml-0 ml-3 md:mr-0 mr-1">
-            <div className="text-xl bg-white rounded-lg md:mt-4 mt-0 mr-2 p-4">Stats</div>
+            <Title>Stats</Title>
             <WhiteDiv value="Games played">
                 <div className="text-xs mt-2">555</div>
             </WhiteDiv>
@@ -45,6 +47,8 @@ export default function Page() {
                     </div>
                 </WhiteDiv>
             </div>
+
+            <Author />
         </div>
     )
 }
