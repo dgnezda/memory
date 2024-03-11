@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id       String    @id @default(cuid())
+  email    String?   @unique @db.VarChar(255)
+  password String?   @db.VarChar(255)
+  name     String?   @db.VarChar(255)
+  games    Int?      @default(0)
+  scores   Score[]
+  settings Settings?
+  @@map(name: "users")
+}
+
+model Score {
+  id       String    @id @default(cuid())
+  gameMode String?   @db.VarChar(255)
+  score    Int?
+  date     DateTime? @default(now()) @db.Timestamp(6)
+  userId   String?
+  user     User?     @relation(fields: [userId], references: [id])
+}
+
+model Settings {
+  id        String   @id @default(cuid())
+  boardSize Int?     @default(0)
+  sound     Boolean? @default(true)
+  timer     Boolean? @default(true)
+  backColor Int?     @default(0)
+  userId    String?  @unique
+  user      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

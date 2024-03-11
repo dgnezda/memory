@@ -49,6 +49,7 @@ import useSound from 'use-sound';
 import Author from '@/app/ui/components/Author';
 
 export default function Page() {
+    // Card property arrays: colors, symbols, arrows, letters, nums
     const colorPairs = ['bg-blue-400', 'bg-rose-400', 'bg-teal-400', 'bg-violet-400', 'bg-yellow-300', 'bg-cyan-300', 'bg-pink-400', 'bg-orange-300']
     const iconStyle = 'md:h-28 h-12 self-center'
     const symbols = [
@@ -90,28 +91,28 @@ export default function Page() {
     const alphabet = 'ABCČDEFGHIJKLMNOPQRSŠTUVWXYZŽ'.split('')
     const mathNums = '0123456789π'.split('')
     
-    const getInitialState = (gameMode: string) => {
+    const getInitialState = (gameMode: string, numCards = 8) => {
         // Get random board, make initial board state object array
         const board = generateRandomBoard()
         const boardArray: any[] = []
 
         if (gameMode === 'arrows') {
-            const arrowFaces = getRandomCardFaces(arrows, 8)
+            const arrowFaces = getRandomCardFaces(arrows, numCards)
             board.map(num => (
                 boardArray.push(arrowFaces[num - 1])
             ))
         } else if (gameMode === 'symbols') {
-            const symbolFaces = getRandomCardFaces(symbols, 8)
+            const symbolFaces = getRandomCardFaces(symbols, numCards)
             board.map(num => (
                 boardArray.push(symbolFaces[num - 1])
             ))
         } else if (gameMode === 'letters') {
-            const letters = getRandomCardFaces(alphabet, 8)
+            const letters = getRandomCardFaces(alphabet, numCards)
             board.map(num => (
                 boardArray.push(letters[num - 1])
             ))
         } else {
-            const nums = getRandomCardFaces(mathNums, 8)
+            const nums = getRandomCardFaces(mathNums, numCards)
             board.map(num => (
                 boardArray.push(nums[num - 1])
             ))
@@ -161,7 +162,7 @@ export default function Page() {
         setIsCardAnimating(true)
         setTimeout(() => {
             setIsCardAnimating(false)
-        }, 200)
+        }, 250)
         setWinMessage('')
     }
 

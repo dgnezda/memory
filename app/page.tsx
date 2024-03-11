@@ -9,8 +9,7 @@ export default function Home() {
   return (
     <main className="flex h-full flex-col flex-wrap items-center bg-slate-50">
       <h1 className={`${lobster.className} md:my-10 my-8 md:text-8xl text-7xl`}>memory</h1>
-      {/* <Link href={"./dashboard/game"} className="text-white bg-gray-700 hover:bg-gray-500 rounded-lg m-10 p-10">PLAY</Link> */}
-
+      
       <div className="md:my-10 my:10 grid grid-cols-4 grid-rows-4 items-center justify-center gap-5">
         {squareArr.map((_sqr, index) => (
           <div key={index} className="md:h-20 h-14 md:w-20 w-14 bg-gray-300"></div>

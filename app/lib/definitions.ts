@@ -5,6 +5,7 @@ export type User = {
     password: string;
     games_played: number;
     scores: Score[];
+    settings: Settings
   };
 
 export type CardType = {
@@ -15,7 +16,7 @@ export type CardType = {
 }
 
 export type Score = {
-  id: string;
+  id: number;
   user: User;
   game_mode: string;
   score: number;

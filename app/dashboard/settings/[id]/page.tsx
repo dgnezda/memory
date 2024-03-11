@@ -6,6 +6,7 @@ import Button from "@/app/ui/components/Button"
 import { cardColors, cardHoverColors, mainColors } from "@/app/ui/colors"
 import Title from "@/app/ui/components/Title"
 import Author from "@/app/ui/components/Author"
+import prisma from "@/app/lib/prisma"
 
 export default function Page() {
     return (
@@ -15,18 +16,18 @@ export default function Page() {
                 <div className="flex flex-row items-end text-sm mt-1">
                     <label>
                         <TinyGrid rows={4} columns={4} />
-                        <input className="m-2" type="radio" name="boardSize" value="44" />
+                        <input className="m-2" type="radio" name="boardSize" />
                         4x4
                     </label>
                     <label>
                         <TinyGrid rows={5} columns={4} />
-                        <input className="m-2" type="radio" name="boardSize" value="54" />
+                        <input className="m-2" type="radio" name="boardSize" />
                         5x4
                         <br></br>
                     </label>
                     <label>
                         <TinyGrid rows={6} columns={6} />
-                        <input className="m-2" type="radio" name="boardSize" value="66" />
+                        <input className="m-2" type="radio" name="boardSize" />
                         6x6
                     </label>
                 </div>
@@ -36,12 +37,12 @@ export default function Page() {
                 <div className="flex flex-row">
                     <label>
                         <SpeakerWaveIcon className="h-10 md:mt-8 sm:mt-2 ml-1" />
-                        <input className="mt-2 m-2" type="radio" name="sound" value="On" />
+                        <input className="mt-2 m-2" type="radio" name="sound" />
                         On
                     </label>
                     <label>
                         <SpeakerXMarkIcon className="h-10 md:mt-8 sm:mt-2 ml-5" />
-                        <input className="mt-2 ml-5 mr-2" type="radio" name="sound" value="Off" />
+                        <input className="mt-2 ml-5 mr-2" type="radio" name="sound" />
                         Off
                     </label>
                 </div>
@@ -59,11 +60,11 @@ export default function Page() {
             <div className="flex flex-row">
                 <ClockIcon className="h-7" />
                 <label>
-                    <input className="mt-2 m-2" type="radio" name="timer" value="On" />
+                    <input className="mt-2 m-2" type="radio" name="timer" />
                     On
                 </label>
                 <label>
-                    <input className="mt-2 m-2" type="radio" name="timer" value="Off" />
+                    <input className="mt-2 m-2" type="radio" name="timer" />
                     Off
                 </label>
             </div>
