@@ -8,7 +8,7 @@ export default function Page() {
     return (
         <>
             <Title>About</Title>
-            <div>
+            <div className="md:ml-0 ml-2">
                 <WhiteDiv className={`text-sm`}>
                     <div className={`text-sm`}>
                         Hi! My name is Domen. Do you like my memory game app?
