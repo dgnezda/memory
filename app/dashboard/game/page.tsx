@@ -41,12 +41,15 @@ import {
     ArrowUturnRightIcon,
     ArrowUturnUpIcon,
     ChevronDoubleRightIcon,
+    SpeakerWaveIcon,
+    SpeakerXMarkIcon,
     CheckIcon,
     XMarkIcon,
     ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 import useSound from 'use-sound';
 import Author from '@/app/ui/components/Author';
+import Button from '@/app/ui/components/Button';
 
 export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-rose-400', 'bg-teal-400', 'bg-violet-400', 'bg-yellow-300', 'bg-cyan-300', 'bg-pink-400', 'bg-orange-300']
@@ -139,18 +142,19 @@ export default function Page() {
     const [gameScore, setGameScore] = useState<number | null>(null)
     const [isCardAnimating, setIsCardAnimating] = useState(false)
     const [winMessage, setWinMessage] = useState('')
+    const [soundOn, setSoundOn] = useState(true)
     // Sounds
     const cardSoundString = '/sounds/tap1.mp3'
     const [sound, setSound] = useState(cardSoundString)
     const [playWin] = useSound('/sounds/win.mp3')
     const [playMatch] = useSound('/sounds/coin1.mp3')
-    const [playSetCards] = useSound('/sounds/cardFan2.mp3')
+    const [playSetCards] = useSound('/sounds/jump.wav') //cardFan2.mp3
 
     // Reset game
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
     const handleResetGame = () => {
         const newInitialState = getInitialState(gameMode)
-        playSetCards()
+        if(soundOn)playSetCards()
         setCards(newInitialState)
         setFlippedCards([])
         setTurns(0)
@@ -184,7 +188,7 @@ export default function Page() {
             setGameScore(calculateFinalScore(timer, turns))
             setTimeout(() => {
                 setShowModal(true)
-                playWin()
+                if (soundOn) playWin()
             }, 500)
         }
 
@@ -198,7 +202,7 @@ export default function Page() {
             // Check if the two flipped cards have the same number
             if (card1 && card2 && card1.num === card2.num) {
                 // Matched pair: Keep cards visible, clear flipped cards
-                playMatch()
+                if(soundOn) playMatch()
                 setFlippedCards([]);
                 setMatchedCardIds(prevIds => [...prevIds, card1.id, card2.id])
                 setMatchAnimation('check');
@@ -273,10 +277,19 @@ export default function Page() {
         setFlippedCards(prevFlippedCards => [...prevFlippedCards, cardId]);
     };
 
+    const toggleSound = () => {
+        setSoundOn(!soundOn)
+    }
+
     return (
         <>
             <div className='flex justify-around md:h-10 mt-4 md:w-full'>
                 <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
+                <button onClick={toggleSound} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'>{soundOn
+                        ? <SpeakerWaveIcon className='text-black h-4 m-1' />
+                        : <SpeakerXMarkIcon className='text-slate-400 h-4 m-1' />
+                    }
+                </button>
                 <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'>
                     {gameMode === 'numbers' 
                         ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
@@ -340,6 +353,7 @@ export default function Page() {
                     handleResetGame()
                 }}
             />
+            {/* <Button className={`${soundOn ? 'text-black' : 'text-gray-500'} bg-white`}><SpeakerWaveIcon className={`${soundOn ? 'text-black' : 'text-gray-500'}`} onClick={toggleSound} /></Button> */}
         </>
     )
 }
