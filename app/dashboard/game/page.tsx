@@ -1,7 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { calculateFinalScore, formatTime, generateRandomBoard, getRandomCardFaces, getWinMessage } from '../../lib/utils';
+import { 
+    calculateFinalScore, 
+    formatTime, 
+    generateRandomBoard, 
+    getRandomCardFaces, 
+    getWinMessage 
+} from '../../lib/utils';
 import Card from '@/app/ui/components/Card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/components/Modal';
@@ -48,8 +54,6 @@ import {
     ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 import useSound from 'use-sound';
-import Author from '@/app/ui/components/Author';
-import Button from '@/app/ui/components/Button';
 
 export default function Page() {
     const colorPairs = ['bg-blue-400', 'bg-rose-400', 'bg-teal-400', 'bg-violet-400', 'bg-yellow-300', 'bg-cyan-300', 'bg-pink-400', 'bg-orange-300']
@@ -344,7 +348,6 @@ export default function Page() {
                     </div>
                 }   
             </div>
-            <Author />
             <Modal
                 isOpen={showModal}
                 message={`
@@ -358,7 +361,6 @@ export default function Page() {
                     handleResetGame()
                 }}
             />
-            {/* <Button className={`${soundOn ? 'text-black' : 'text-gray-500'} bg-white`}><SpeakerWaveIcon className={`${soundOn ? 'text-black' : 'text-gray-500'}`} onClick={toggleSound} /></Button> */}
         </>
     )
 }

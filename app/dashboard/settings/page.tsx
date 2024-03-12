@@ -5,7 +5,6 @@ import { SpeakerWaveIcon, SpeakerXMarkIcon, ClockIcon } from "@heroicons/react/2
 import Button from "@/app/ui/components/Button"
 import { cardColors, cardHoverColors, mainColors } from "@/app/ui/colors"
 import Title from "@/app/ui/components/Title"
-import Author from "@/app/ui/components/Author"
 
 export default function Page() {
     return (
@@ -35,12 +34,12 @@ export default function Page() {
             <WhiteDiv className="md:h-44 sm:h-32" value="Sound">
                 <div className="flex flex-row">
                     <label>
-                        <SpeakerWaveIcon className="h-10 md:mt-8 sm:mt-2 ml-1" />
+                        <SpeakerWaveIcon className="h-8 md:mt-8 sm:mt-2 ml-1" />
                         <input className="mt-2 m-2" type="radio" name="sound" value="On" />
                         On
                     </label>
                     <label>
-                        <SpeakerXMarkIcon className="h-10 md:mt-8 sm:mt-2 ml-5" />
+                        <SpeakerXMarkIcon className="h-8 md:mt-8 sm:mt-2 ml-5" />
                         <input className="mt-2 ml-5 mr-2" type="radio" name="sound" value="Off" />
                         Off
                     </label>
@@ -84,8 +83,6 @@ export default function Page() {
                 </div>
             </WhiteDiv>
             <WhiteDiv className="md:col-span-2"></WhiteDiv>
-
-            <Author />
         </div>
     )
 }

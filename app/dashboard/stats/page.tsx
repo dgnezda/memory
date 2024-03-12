@@ -1,4 +1,3 @@
-import Author from "@/app/ui/components/Author";
 import Title from "@/app/ui/components/Title";
 import WhiteDiv from "@/app/ui/components/WhiteDiv";
 
@@ -9,7 +8,7 @@ export default function Page() {
             <WhiteDiv value="Games played">
                 <div className="text-xs mt-2">555</div>
             </WhiteDiv>
-            <div className="grid grid-cols-2">
+            <div className="grid md:grid-cols-2 sm:grid-cols-1">
                 <WhiteDiv value="Best Scores">
                     <div className="grid grid-cols-4 justify-between text-xs mt-2">
                         <div className="col-span-3">Overall:</div><div className="text-end">10</div>
@@ -47,8 +46,6 @@ export default function Page() {
                     </div>
                 </WhiteDiv>
             </div>
-
-            <Author />
         </div>
     )
 }
