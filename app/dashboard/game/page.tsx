@@ -145,7 +145,7 @@ export default function Page() {
     const [soundOn, setSoundOn] = useState(true)
     // Sounds
     const cardSoundString = '/sounds/tap1.mp3'
-    const [sound, setSound] = useState(cardSoundString)
+    const [cardSound, setCardSound] = useState(cardSoundString)
     const [playWin] = useSound('/sounds/win.mp3')
     const [playMatch] = useSound('/sounds/coin1.mp3')
     const [playSetCards] = useSound('/sounds/jump.wav') //cardFan2.mp3
@@ -154,7 +154,9 @@ export default function Page() {
     // * reset card positions, flip them back over, set turns to 0, set mathched Ids array to []
     const handleResetGame = () => {
         const newInitialState = getInitialState(gameMode)
-        if(soundOn)playSetCards()
+        if (soundOn) {
+            playSetCards()
+        }
         setCards(newInitialState)
         setFlippedCards([])
         setTurns(0)
@@ -188,13 +190,15 @@ export default function Page() {
             setGameScore(calculateFinalScore(timer, turns))
             setTimeout(() => {
                 setShowModal(true)
-                if (soundOn) playWin()
+                if (soundOn) {
+                    playWin()
+                }
             }, 500)
         }
 
         // Check if there are exactly 2 flipped cards
         if (flippedCards.length === 2) {
-            setSound('')
+            setCardSound('')
             const [card1Id, card2Id] = flippedCards;
             const card1 = cards.find(card => card.id === card1Id);
             const card2 = cards.find(card => card.id === card2Id);
@@ -202,14 +206,16 @@ export default function Page() {
             // Check if the two flipped cards have the same number
             if (card1 && card2 && card1.num === card2.num) {
                 // Matched pair: Keep cards visible, clear flipped cards
-                if(soundOn) playMatch()
+                if (soundOn) {
+                    playMatch()
+                }
                 setFlippedCards([]);
                 setMatchedCardIds(prevIds => [...prevIds, card1.id, card2.id])
                 setMatchAnimation('check');
                 setTimeout(() => {
                     setMatchAnimation(null)
                 }, 800)
-                setSound(cardSoundString)
+                setCardSound(cardSoundString)
             } else {
                 // Unmatched pair: Flip cards back to non-visible after a delay
                 setMatchAnimation('cross');
@@ -222,15 +228,14 @@ export default function Page() {
                 ));
                 setFlippedCards([]);
                 setMatchAnimation(null)
-                setSound(cardSoundString)
+                setCardSound(cardSoundString)
                 }, 1000); // Delay after a non-match (milliseconds)
-                
             }
 
             // Increment turns
             setTurns(prevTurns => prevTurns + 1)
         }
-    }, [flippedCards, cards]);
+    }, [flippedCards, cards, soundOn, playMatch, playWin, playSetCards]);
 
     useEffect(() => {
         if (startTime && matchedCardIds.length < cards.length) {
@@ -322,7 +327,7 @@ export default function Page() {
                         key={card.id}
                         disabled={matchedCardIds.includes(card.id)}
                         onClick={() => handleCardClick(card.id)}
-                        sound={sound}
+                        sound={soundOn ? cardSound : ''}
                         back={cardBack}
                         isAnimating={isCardAnimating}
                     />

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Page() {
     return (
-        <>
+        <div className="md:ml-0 ml-2">
             <Title>About</Title>
             <div>
                 <WhiteDiv className={`text-sm`}>
@@ -21,6 +21,6 @@ export default function Page() {
 
                 <div className='absolute bottom-1 left-1/2 text-xs text-gray-400'>Website design and app by Domen Gnezda</div>
             </div>
-        </>
+        </div>
     )
 }
