@@ -24,6 +24,7 @@ export type Score = {
 }
 
 export type Settings = {
+  id: string;
   user: User;
   board_size: number;
   sound: boolean;

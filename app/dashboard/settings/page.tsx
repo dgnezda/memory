@@ -1,3 +1,5 @@
+'use client';
+
 import ColorSwash from "@/app/ui/components/ColorSwash"
 import WhiteDiv from "@/app/ui/components/WhiteDiv"
 import TinyGrid from "@/app/ui/components/TinyGrid"
@@ -5,16 +7,27 @@ import { SpeakerWaveIcon, SpeakerXMarkIcon, ClockIcon } from "@heroicons/react/2
 import Button from "@/app/ui/components/Button"
 import { cardColors, cardHoverColors, mainColors } from "@/app/ui/colors"
 import Title from "@/app/ui/components/Title"
+import { fetchSettingsForUser } from "@/app/lib/data"
+import { useState } from 'react'
 
 export default function Page() {
+    // const settings = await fetchSettingsForUser('410544b2-4001-4271-9855-fec4b6a6442a') // FIXME: REPLACE WITH USER ID
+    
+    // States
+    const [selectedColor, setSelectedColor] = useState(0)
+
+    const handleColorSelect = (index: number) => {
+        setSelectedColor(index)
+    }
+
     return (
         <div className="md:grid md:grid-cols-2 md:ml-1 ml-3 md:mr-0 mr-1">
             <Title>Game Settings</Title>
-            <WhiteDiv value="Board size">
+            {/* <WhiteDiv value="Board size">
                 <div className="flex flex-row items-end text-sm mt-1">
                     <label>
                         <TinyGrid rows={4} columns={4} />
-                        <input className="m-2" type="radio" name="boardSize" value="44" />
+                        <input className="m-2" type="radio" name="boardSize" value="44" checked />
                         4x4
                     </label>
                     <label>
@@ -29,13 +42,13 @@ export default function Page() {
                         6x6
                     </label>
                 </div>
-            </WhiteDiv>
+            </WhiteDiv> */}
 
-            <WhiteDiv className="md:h-44 sm:h-32" value="Sound">
+            {/* <WhiteDiv className="md:h-44 sm:h-32" value="Sound">
                 <div className="flex flex-row">
                     <label>
                         <SpeakerWaveIcon className="h-8 md:mt-8 sm:mt-2 ml-1" />
-                        <input className="mt-2 m-2" type="radio" name="sound" value="On" />
+                        <input className="mt-2 m-2" type="radio" name="sound" value="On" checked />
                         On
                     </label>
                     <label>
@@ -44,12 +57,16 @@ export default function Page() {
                         Off
                     </label>
                 </div>
-            </WhiteDiv>
+            </WhiteDiv> */}
             
             <WhiteDiv className="h-24" value="Card back color">
                 <div className="flex flex-row items-start h-4">
                     {cardColors.map((color, index) => (
-                        <ColorSwash key={index} className={`${color} ${cardHoverColors[index]}`} />
+                        <ColorSwash 
+                            key={index} 
+                            className={`${color} ${cardHoverColors[index]} ${selectedColor === index ? 'border-2 border-slate-500' : 'border-2 border-transparent'} cursor-pointer`} 
+                            onClick={() => handleColorSelect(index)} 
+                        />
                     ))}
                 </div>
             </WhiteDiv>
@@ -58,7 +75,7 @@ export default function Page() {
             <div className="flex flex-row">
                 <ClockIcon className="h-7" />
                 <label>
-                    <input className="mt-2 m-2" type="radio" name="timer" value="On" />
+                    <input className="mt-2 m-2" type="radio" name="timer" value="On" checked />
                     On
                 </label>
                 <label>

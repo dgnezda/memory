@@ -1,19 +1,9 @@
 const users = [
     {
-      id: '1',
-      name: 'User1',
-      email: 'user1@memory.si',
-      password: '1234567',
-      games_played: 0,
-      scores: [14, 13],
-    },
-    {
-      id: '2',
-      name: 'User2',
-      email: 'user2@memory.si',
-      password: '1234567',
-      games_played: 0,
-      scores: [15, 18],
+      id: '410544b2-4001-4271-9855-fec4b6a6442a',
+      name: 'User',
+      email: 'user@mail.com',
+      password: '123456',
     },
   ];
 
