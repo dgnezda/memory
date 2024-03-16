@@ -292,24 +292,24 @@ export default function Page() {
 
     return (
         <>
-            <div className='flex justify-around md:h-10 mt-4 md:w-full'>
-                <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'><ArrowPathIcon className='h-4 m-1' /></button>
-                <button onClick={toggleSound} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'>{soundOn
-                        ? <SpeakerWaveIcon className='text-black h-4 m-1' />
-                        : <SpeakerXMarkIcon className='text-slate-400 h-4 m-1' />
+            <div className='flex justify-around md:h-10 mt-4 md:w-[700px] md:mx-auto'>
+                <button onClick={handleResetGame} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl dark-button'><ArrowPathIcon className='h-4 m-1' /></button>
+                <button onClick={toggleSound} className='py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl dark-button'>{soundOn
+                        ? <SpeakerWaveIcon className='text-black h-4 m-1 dark-volume' />
+                        : <SpeakerXMarkIcon className='text-slate-400 h-4 m-1 dark-volume' />
                     }
                 </button>
-                <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl'>
+                <button onClick={cycleGameMode} className='flex py-2 px-4 bg-slate-50 hover:bg-teal-100 hover:text-slate-700 rounded-xl dark-button'>
                     {gameMode === 'numbers' 
-                        ? <p className='mx-3'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
+                        ? <p className='md:mx-2 mx-0'>1&nbsp;&nbsp;2&nbsp;&nbsp;3</p> 
                         : gameMode === 'letters' 
-                            ? <p className='mx-3'>A&nbsp;&nbsp;B&nbsp;&nbsp;C</p> 
+                            ? <p className='md:mx-2 mx-0'>A&nbsp;&nbsp;B&nbsp;&nbsp;C</p> 
                             : gameMode === 'arrows' 
                                 ? <><ArrowRightIcon className='h-4 m-1' /><ArrowLeftIcon className='h-4 m-1' /><ArrowDownRightIcon className='h-4 m-1' /></>
                                 : <><LightBulbIcon className='h-4 m-1' /><HeartIcon className='h-4 m-1' /><RocketLaunchIcon className='h-4 m-1' /></>
                     }
                 </button>
-                <div className='py-2 bg-slate-50 rounded-xl w-[140px] grid grid-cols-3 items-center'>
+                <div className='py-2 bg-slate-50 rounded-xl w-[140px] grid grid-cols-3 items-center dark-button'>
                     <div className='span-1 flex items-center'>
                         <div className='flex justify-center pl-2'><ChevronDoubleRightIcon className='h-5' /></div>
                         <div className='pl-1'>{turns}</div> 
@@ -320,8 +320,8 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <div className='flex container justify-center items-start md:mx-auto mx-1 mt-8 md:h-full'>    
-                <div className='grid grid-cols-4 md:gap-6 gap-3 justify-center'>
+            <div className='flex container justify-center items-start md:mx-auto mt-8 md:h-full'>    
+                <div className='grid grid-cols-4 grid-rows-4 md:gap-5 gap-2 justify-center'>
                     {cards.map(card => (
                     <Card 
                         value={card.value} 
@@ -336,17 +336,17 @@ export default function Page() {
                         isAnimating={isCardAnimating}
                     />
                     ))}   
-                </div>
                 {matchAnimation === 'check' 
-                    && <div className='check-cross'>
+                    && <div className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:ml-36'>
                         <CheckIcon className='h-40 text-green-400 opacity-60'/>
                     </div>
                 }
                 {matchAnimation === 'cross' 
-                    && <div className='check-cross'>
+                    && <div className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:ml-20'>
                         <XMarkIcon className='h-40 text-red-400 opacity-60'/>
                     </div>
                 }   
+                </div>
             </div>
             <Modal
                 isOpen={showModal}

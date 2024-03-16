@@ -80,7 +80,7 @@ export default function Page() {
                 </label>
             </div>
             </WhiteDiv>
-            <div className="text-xl col-span-2 bg-white rounded-lg mt-4 mr-2 p-4">Profile Settings</div>
+            <div className="text-xl col-span-2 bg-white rounded-lg mt-4 mr-2 p-4 dark-div">Profile Settings</div>
             
             <WhiteDiv value="Change Password" className="h-52">
                 <div className="flex flex-col mt-2 justify-center items-center">
