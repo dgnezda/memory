@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  ChartPieIcon,
+  TrophyIcon,
   InformationCircleIcon,
   PuzzlePieceIcon,
   CogIcon
@@ -16,7 +16,7 @@ import { usePathname } from 'next/navigation';
 const links = [
   // { name: 'Home', href: '/dashboard', icon: HomeIcon },
   { name: 'Game', href: '/dashboard/game', icon: PuzzlePieceIcon },
-  { name: 'Stats', href: '/dashboard/stats', icon: ChartPieIcon },
+  { name: 'Scores', href: '/dashboard/scores', icon: TrophyIcon },
   { name: 'Settings', href: '/dashboard/settings', icon: CogIcon },
   { name: 'About', href: '/dashboard/about', icon: InformationCircleIcon},
 ];

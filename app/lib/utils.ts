@@ -43,30 +43,101 @@ export const formatTime = (time: number): string => {
   const seconds = Math.floor(time % 60);
   const tenths = Math.floor((time % 1) * 10); // Extract tenths of a second
 
-  if (minutes === 0) {
+  if (minutes > 59) {
+    const hours = Math.floor(minutes / 60);
+    const minutesH = Math.floor(minutes % 60);
+    return `${hours}:${minutesH < 10 ? '0' : ''}${minutesH}`;
+  } else if (minutes === 0) {
     return `${seconds}.${tenths}`;
   } else {
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}.${tenths}`;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 };
 
-export function calculateFinalScore(moves: number, timeTenths: number): number {
+export function calculateFinalScore2(moves: number, timeTenths: number): number {
   // Define weight for moves and time
   const weightMoves: number = 0.5; // Adjust this weight as needed
   const weightTime: number = 0.5; // Adjust this weight as needed
+  // Check if moves or time exceed maximum thresholds
+  if (moves > 40 || timeTenths > 3000) {
+      return 0;
+  }
 
   // Normalize the number of moves and time
-  const normalizedMoves: number = (moves - 8) / (45 - 8);
-  const normalizedTime: number = (timeTenths / 10 - 21) / (110 - 21); // Adjust maximum time as needed
-
+  const normalizedMoves: number = Math.min((moves - 8) / (40 - 8), 1);
+  const normalizedTime: number = Math.max(Math.min((timeTenths / 100 - 8) / (300 - 8), 1), 0); 
   // Calculate final score
   const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
 
   // Convert final score to a 0-100 scale
-  const scaledScore: number = Math.round(finalScore * 1000);
-  if (scaledScore > 0) return scaledScore
-  return 1;
+  const scaledScore: number = Math.round(finalScore * 100);
+
+  return scaledScore;
 }
+
+
+export function calculateFinalScore1(moves: number, timeTenths: number): number {
+  // Define weight for moves and time
+  const weightMoves: number = 0.5; // Adjust this weight as needed
+  const weightTime: number = 0.5; // Adjust this weight as needed
+
+  // Check if moves or time exceed maximum thresholds
+  if (moves > 40 || timeTenths > 3000) {
+    return 0;
+  }
+
+  // Normalize the number of moves and time
+  const normalizedMoves: number = Math.min((moves - 8) / (40 - 8), 1);
+  const normalizedTime: number = Math.max(Math.min((timeTenths / 10 - 8) / (300 - 8), 1), 0);
+
+  // Calculate final score
+  const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
+
+  // Convert final score to a 0-1000 scale
+  const scaledScore: number = Math.round(finalScore * 1000);
+
+  return scaledScore;
+}
+
+export function calculateFinalScore(moves: number, timeTenths: number): number {
+  // Define initial weights for moves and time
+  let weightMoves: number = 0.5;
+  let weightTime: number = 0.5;
+
+  // Check if moves or time exceed maximum thresholds
+  if (moves > 40 || timeTenths > 1800) {
+    return 0;
+  }
+
+  // Calculate the balance factor between moves and time
+  const balanceFactor: number = Math.abs(moves - (timeTenths / 10)) / Math.max(moves, timeTenths / 10);
+
+  // Adjust weights based on the balance factor
+  if (balanceFactor >= 0.3) {
+    if (moves > timeTenths / 10) {
+      weightMoves = 0.6;
+      weightTime = 0.4;
+    } else {
+      weightMoves = 0.4;
+      weightTime = 0.6;
+    }
+  }
+
+  // Normalize the number of moves and time
+  const normalizedMoves: number = Math.min((moves - 8) / (40 - 8), 1);
+  const normalizedTime: number = Math.max(Math.min((timeTenths - 8) / (180 - 8), 1), 0);
+  console.log(normalizedMoves);
+  console.log(normalizedTime);
+  
+  // Calculate final score
+  const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
+
+  // Convert final score to a 0-1000 scale
+  const scaledScore: number = Math.round(finalScore * 1000);
+
+  return scaledScore;
+}
+
 
 export function getWinMessage(): string {
   const winMessages = [
