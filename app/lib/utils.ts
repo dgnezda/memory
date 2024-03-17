@@ -99,7 +99,7 @@ export function calculateFinalScore1(moves: number, timeTenths: number): number 
   return scaledScore;
 }
 
-export function calculateFinalScore(moves: number, timeTenths: number): number {
+export function calculateFinalScore(moves: number, timeTenths: number, mode: string): number {
   // Define initial weights for moves and time
   let weightMoves: number = 0.5;
   let weightTime: number = 0.5;
@@ -133,8 +133,16 @@ export function calculateFinalScore(moves: number, timeTenths: number): number {
   const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
 
   // Convert final score to a 0-1000 scale
-  const scaledScore: number = Math.round(finalScore * 1000);
+  let scaledScore: number = Math.round(finalScore * 1000);
+  console.log(scaledScore);
+  
 
+  if (mode === 'symbols') {
+    scaledScore += 100
+  } else if (mode === 'arrows') {
+    scaledScore += 200
+  }
+  console.log(scaledScore);
   return scaledScore;
 }
 

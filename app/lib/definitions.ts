@@ -1,10 +1,11 @@
 export type User = {
     id: string;
-    name: string;
+    username: string;
     email: string;
     password: string;
-    games_played: number;
+    settings: Settings;
     scores: Score[];
+    game_stats: GameStatistic[];
   };
 
 export type CardType = {
@@ -16,17 +17,39 @@ export type CardType = {
 
 export type Score = {
   id: string;
+  game: Game;
   user: User;
-  game_mode: string;
+  turns: number;
   score: number;
-  date: string;
-  time: number | string;
+  time: number;
 }
 
 export type Settings = {
+  id: string;
   user: User;
+  user_id: string;
   board_size: number;
   sound: boolean;
-  timer: boolean;
-  back_color: number;
+  card_color: number;
+  default_game_mode: string;
+}
+
+export type GameStatistic = {
+  id: string;
+  turns: number;
+  time_per_turn: number[];
+  accuracy: number;
+  game_completion_status: boolean;
+  date: Date;
+  user: User;
+  user_id: string;
+  game: Game;
+  game_id: number;
+}
+
+export type Game = {
+  id: number;
+  mode: string;
+  scores: Score[]
+  game_stats: GameStatistic[]
 }

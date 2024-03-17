@@ -191,7 +191,7 @@ export default function Page() {
             // All cards are flipped
             // Show pop-up or modal
             setWinMessage(getWinMessage())
-            setGameScore(calculateFinalScore(turns, timer))
+            setGameScore(calculateFinalScore(turns, timer, gameMode))
             setTimeout(() => {
                 setShowModal(true)
                 if (soundOn) {

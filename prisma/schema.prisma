@@ -14,21 +14,22 @@ model User {
   username  String?     
   email     String?
   password  String? 
-  highScores HighScore[]
+  settings  Settings?
+  scores Score[]
   gameStatistics GameStatistic[]
 }
 
-// Define the Games table
+
 model Game {
   id    Int     @id @default(autoincrement())
   mode  String
-  highScores HighScore[]
+  scores Score[]
   gameStatistics GameStatistic[]
 }
 
-// Define the HighScores table
-model HighScore {
-  id            String       @id @default(cuid())
+
+model Score {
+  id            String    @id @default(cuid())
   score         Int
   completionTime Int
   turnsTaken    Int
@@ -38,18 +39,27 @@ model HighScore {
   gameId        Int
 }
 
-// Define the GameStatistics table
+
 model GameStatistic {
   id                   Int      @id @default(autoincrement())
   turnsTaken           Int
   timePerTurn          Float[]
   accuracyRate         Float
-  cardFlips            Int
   gameCompletionStatus Boolean
-  scoreDistribution    Json    // Assuming score distribution is stored as JSON
   datePlayed           DateTime
   user                 User     @relation(fields: [userId], references: [id])
   userId               String
   game                 Game     @relation(fields: [gameId], references: [id])
   gameId               Int
+}
+
+model Settings {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @unique
+  boardSize   Int       @default(0)
+  sound       Boolean   @default(true)
+  cardColor   Int       @default(0)
+  // timer       Boolean  @default(true)
+  defaultMode String    @default("numbers")
 }
