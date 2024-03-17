@@ -1,5 +1,3 @@
-import { mainColors } from "@/app/ui/colors";
-import Button from "@/app/ui/components/Button";
 import Title from "@/app/ui/components/Title";
 import WhiteDiv from "@/app/ui/components/WhiteDiv";
 import Link from "next/link";
@@ -14,7 +12,7 @@ export default function Page() {
                 <WhiteDiv className="text-sm">
                     <div className="text-sm flex flex-row">
                         Hi! My name is Domen. Do you like my memory game app?
-                        I hope you enjoy my app as much as I enjoyed building it!
+                        I hope you enjoy it as much as I enjoyed building it!
                     </div>
                     <div className="mt-4">If you are interested in collaborating with me or hiring me for work, you can <Link href="https://github.com/dgnezda?tab=repositories" target="_blank" rel="noopener noreferrer"  className="text-teal-500 text-sm text-bold hover:underline animate-pulse">check out my github repos</Link> or click on the button below to shoot me an email.</div>
                     <EmailButton address="mailto:domen.gnezda@pm.me">Contact Me</EmailButton>

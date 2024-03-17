@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import NavLinks from './NavLinks';
-import { PuzzlePieceIcon } from '@heroicons/react/24/outline';
+import { PowerIcon, PuzzlePieceIcon } from '@heroicons/react/24/outline';
 import { lobster } from '../fonts';
 import { mainColors } from '../colors';
 import Author from './Author';
@@ -23,7 +23,7 @@ export default function SideNav() {
         <div className="flex hidden h-auto w-full grow rounded-lg bg-gray-50 lg:block p-2 text-sm dark-div"></div>
         <Author />
         {/* <form>
-          <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-lg bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 lg:flex-none lg:justify-start lg:p-2 lg:px-3">
+          <button className={`flex h-[48px] w-full grow items-center justify-center gap-2 rounded-lg bg-gray-50 p-3 text-sm font-medium hover:bg-teal-100 hover:text-slate-700 lg:flex-none lg:justify-start lg:p-2 lg:px-3`}>
             <PowerIcon className="w-6" />
             <div className="hidden lg:block">Sign Out</div>
           </button>

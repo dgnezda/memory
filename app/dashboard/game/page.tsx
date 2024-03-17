@@ -337,7 +337,7 @@ export default function Page() {
                     />
                     ))}   
                 {matchAnimation === 'check' 
-                    && <div className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:ml-36'>
+                    && <div className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:ml-20'>
                         <CheckIcon className='h-40 text-green-400 opacity-60'/>
                     </div>
                 }

@@ -22,6 +22,7 @@ export const formatDateToLocal = (
 
 export function generateRandomBoard(): number[] {
   const unshuffledBoard = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
+  // Use Fisher-Yates shuffle algo:
   const shuffle = (array: number[]) => { 
     for (let i = array.length - 1; i > 0; i--) { 
       const j = Math.floor(Math.random() * (i + 1)); 
@@ -54,50 +55,6 @@ export const formatTime = (time: number): string => {
   }
 };
 
-export function calculateFinalScore2(moves: number, timeTenths: number): number {
-  // Define weight for moves and time
-  const weightMoves: number = 0.5; // Adjust this weight as needed
-  const weightTime: number = 0.5; // Adjust this weight as needed
-  // Check if moves or time exceed maximum thresholds
-  if (moves > 40 || timeTenths > 3000) {
-      return 0;
-  }
-
-  // Normalize the number of moves and time
-  const normalizedMoves: number = Math.min((moves - 8) / (40 - 8), 1);
-  const normalizedTime: number = Math.max(Math.min((timeTenths / 100 - 8) / (300 - 8), 1), 0); 
-  // Calculate final score
-  const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
-
-  // Convert final score to a 0-100 scale
-  const scaledScore: number = Math.round(finalScore * 100);
-
-  return scaledScore;
-}
-
-
-export function calculateFinalScore1(moves: number, timeTenths: number): number {
-  // Define weight for moves and time
-  const weightMoves: number = 0.5; // Adjust this weight as needed
-  const weightTime: number = 0.5; // Adjust this weight as needed
-
-  // Check if moves or time exceed maximum thresholds
-  if (moves > 40 || timeTenths > 3000) {
-    return 0;
-  }
-
-  // Normalize the number of moves and time
-  const normalizedMoves: number = Math.min((moves - 8) / (40 - 8), 1);
-  const normalizedTime: number = Math.max(Math.min((timeTenths / 10 - 8) / (300 - 8), 1), 0);
-
-  // Calculate final score
-  const finalScore: number = (1 - normalizedMoves) * weightMoves + (1 - normalizedTime) * weightTime;
-
-  // Convert final score to a 0-1000 scale
-  const scaledScore: number = Math.round(finalScore * 1000);
-
-  return scaledScore;
-}
 
 export function calculateFinalScore(moves: number, timeTenths: number, mode: string): number {
   // Define initial weights for moves and time
