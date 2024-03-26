@@ -11,6 +11,7 @@ import {
 import Card from '@/app/ui/components/Card';
 import { CardType } from '@/app/lib/definitions';
 import Modal from '@/app/ui/components/Modal';
+import { UserButton } from '@clerk/nextjs'
 import { 
     // heroicons.dev
     ClockIcon,
@@ -318,6 +319,9 @@ export default function Page() {
                     <div className='flex justify-center pl-3'><ClockIcon className='h-5' /> </div>
                     <div className='flex justify-center pl-1'>{formatTime(timer)}</div>
                     </div>
+                </div>
+                <div className='mt-1'>
+                    <UserButton />
                 </div>
             </div>
             <div className='flex container justify-center items-start md:mx-auto mt-8 md:h-full'>    
