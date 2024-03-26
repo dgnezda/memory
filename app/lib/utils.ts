@@ -95,9 +95,9 @@ export function calculateFinalScore(moves: number, timeTenths: number, mode: str
   
 
   if (mode === 'symbols') {
-    scaledScore += 100
+    scaledScore += 20
   } else if (mode === 'arrows') {
-    scaledScore += 200
+    scaledScore += 30
   }
   console.log(scaledScore);
   return scaledScore;
