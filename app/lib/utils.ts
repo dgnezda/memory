@@ -72,8 +72,8 @@ export function calculateFinalScore(moves: number, timeTenths: number, mode: str
   // Adjust weights based on the balance factor
   if (balanceFactor >= 0.3) {
     if (moves > timeTenths / 10) {
-      weightMoves = 0.6;
-      weightTime = 0.4;
+      weightMoves = 0.5;
+      weightTime = 0.5;
     } else {
       weightMoves = 0.4;
       weightTime = 0.6;
@@ -97,7 +97,7 @@ export function calculateFinalScore(moves: number, timeTenths: number, mode: str
   if (mode === 'symbols') {
     scaledScore += 20
   } else if (mode === 'arrows') {
-    scaledScore += 30
+    scaledScore += 40
   }
   console.log(scaledScore);
   return scaledScore;
